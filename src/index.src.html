@@ -626,6 +626,12 @@ input, select, textarea { box-shadow: rgba(0,0,0,0.05) 0 1px 1px 0; }
 /* faixas alternadas, em largura total */
 #servicos, #loja, #instagram { background: #ffffff; box-shadow: 0 0 0 100vmax #ffffff; clip-path: inset(0 -100vmax); padding-bottom: var(--s-9); }
 #caes, #visitas, #garantias { padding-bottom: 0; }
+/* v29: portais fora da capa, uma secção por raça */
+#caes .portals { padding-bottom: 0; margin-top: var(--s-6, 32px); }
+#chapters { display: contents; }
+.chapter { border-top: 0; padding-block: var(--s-8, 64px) 0; }
+#escolher { padding-top: var(--s-8, 64px); }
+@media (max-width: 760px) { #caes .portals { gap: 12px; } #caes .portal .ph { --r: 16 / 7 !important; } #caes .portal .cap { padding: 28px 16px 14px; } }
 #servicos .panel, #loja .panel { background: #eee2ff; border-color: transparent; }
 #servicos .panel input, #servicos .panel select, #servicos .panel textarea { background: #ffffff; }
 /* maquete de telemóvel */
@@ -720,7 +726,6 @@ input, select, textarea { box-shadow: rgba(0,0,0,0.05) 0 1px 1px 0; }
           <p class="in"><em>Canil EJ</em>Visita marcada para sábado, às 10h00. Até lá!</p>
         </div>
       </div>
-      <div class="portals" id="portals" aria-busy="true"><div class="skel-list" aria-hidden="true"><div class="skel"></div><div class="skel"></div><div class="skel"></div></div></div>
     </div>
   </div>
 
@@ -730,6 +735,10 @@ input, select, textarea { box-shadow: rgba(0,0,0,0.05) 0 1px 1px 0; }
       <h2>Escolha a <em>raça</em> para a sua casa.</h2>
       <p>Três raças. Cada ficha mostra o temperamento, o porte e o que o cão precisa de si.</p>
     </div>
+      <div class="portals" id="portals" aria-busy="true"><div class="skel-list" aria-hidden="true"><div class="skel"></div><div class="skel"></div><div class="skel"></div></div></div>
+  </section>
+
+  <section id="escolher" class="wrap">
     <div class="finder" id="finder">
       <h3>Qual raça combina com a sua casa?</h3>
       <div class="f-row" data-q="obj"><span class="f-lab">Procura</span><div class="chips" role="group" aria-label="O que procura">
@@ -754,8 +763,9 @@ input, select, textarea { box-shadow: rgba(0,0,0,0.05) 0 1px 1px 0; }
       <div id="cmpOut" aria-live="polite"></div>
       <p class="note-sm">Notas de 1 a 5 são uma referência do canil, não uma medida científica.</p>
     </div>
-    <div id="chapters"></div>
   </section>
+
+  <div id="chapters"></div>
 
   <section id="servicos" class="wrap">
     <div class="sec-head">
@@ -1075,7 +1085,7 @@ input, select, textarea { box-shadow: rgba(0,0,0,0.05) 0 1px 1px 0; }
   $("#chapters").innerHTML = BREEDS.map(function (b) {
     var dogs = DOGS.filter(function (d) { return d.b === b.id; });
     var energy = [1, 2, 3, 4, 5].map(function (i) { return '<i class="' + (i <= b.energia ? "on" : "") + '" style="--i:' + i + '"></i>'; }).join("");
-    return '<article class="chapter" id="' + b.key + '"><div class="chapter-head"><h3>' + b.id + '</h3><p class="tagline">' + b.tag + '</p></div>' +
+    return '<section class="chapter wrap" id="' + b.key + '"><div class="chapter-head"><h3>' + b.id + '</h3><p class="tagline">' + b.tag + '</p></div>' +
       '<div class="chapter-body">' + ph(b.key, b.id, "4 / 5") +
       '<div><p class="intro">' + b.intro + '</p><dl class="specs">' +
       '<div><dt class="mono">Temperamento</dt><dd>' + b.temp + '</dd></div><div><dt class="mono">Porte</dt><dd>' + b.porte + '</dd></div>' +
@@ -1087,7 +1097,7 @@ input, select, textarea { box-shadow: rgba(0,0,0,0.05) 0 1px 1px 0; }
         var msg = "Olá, Canil EJ! Tenho interesse no " + d.b + " " + d.n + " (" + d.s + ", " + d.a + ", " + kz(d.p) + ").";
         return '<div class="dog">' + ph(d.n.toLowerCase(), d.n, "1 / 1") + '<div><h4>' + d.n + '</h4><p class="meta">' + d.s + ' · ' + d.a + '</p><div class="tags"><span>Vacinado</span><span>Desparasitado</span><span>' + (d.ped ? "Com pedigree" : "Sem pedigree") + '</span></div><div class="dact"><button class="linkbtn" type="button" data-vdog="' + d.n + '">Marcar visita com este cão</button><button class="fav" type="button" data-fav="' + d.n + '" aria-pressed="false" aria-label="Guardar ' + d.n + ' nos favoritos"><span aria-hidden="true">♡</span> Guardar</button></div></div>' +
           '<div class="price"><small>Preço</small>' + kz(d.p) + '</div><a class="btn btn-primary btn-sm" target="_blank" rel="noopener" href="' + wa(msg) + '">Tenho interesse</a></div>';
-      }).join("") + '</article>';
+      }).join("") + '</section>';
   }).join("");
 
   /* ---------- serviços ---------- */
