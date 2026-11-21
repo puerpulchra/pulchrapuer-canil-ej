@@ -1,0 +1,1178 @@
+<title>Canil EJ</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* Conceito: capa cinematográfica em azul-marinho do Atlântico, família única de grotesca moderna em pesos extremos (estilo de rede social), X gigante em contorno como marca; raças como capítulos, serviços e loja em módulos com contorno. */
+:root {
+  --bg: #04141b;
+  --surface: #0a2430;
+  --surface-2: #103242;
+  --fg: #e8f1ee;
+  --muted: #8fa9b3;
+  --line: #1f4757;
+  --accent: #7ee0cf;
+  --on-accent: #03211c;
+  --accent-text: #7ee0cf;
+  --warn: #ffb4a8;
+  --hero-bg: #031018;
+  --hero-fg: #e8f1ee;
+  --hero-muted: #9bb6bf;
+  --hero-accent: #7ee0cf;
+  --hero-line: #17343f;
+  --bar: #031018;
+  --font: "Inter", "Helvetica Neue", Arial, system-ui, sans-serif;
+  --font-display: "Bricolage Grotesque", "Inter", "Helvetica Neue", Arial, system-ui, sans-serif;
+  --radius: 0; --radius-sm: 0;
+  --band: #e8f1ee; --band-fg: #07202a; --band-muted: #46606a;
+  --s-1: 4px; --s-2: 8px; --s-3: 12px; --s-4: 16px; --s-5: 24px; --s-6: 32px; --s-7: 40px; --s-8: 64px; --s-9: 92px;
+  --measure: 62ch; --content: 1160px;
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #f0f5f3; --surface: #ffffff; --surface-2: #e2ece9; --fg: #07202a; --muted: #46606a; --line: #bccfca;
+    --accent: #0c7a69; --on-accent: #ffffff; --accent-text: #0a6657; --warn: #a3281a; color-scheme: light;
+  }
+}
+:root[data-theme="light"] {
+  --bg: #f0f5f3; --surface: #ffffff; --surface-2: #e2ece9; --fg: #07202a; --muted: #46606a; --line: #bccfca;
+  --accent: #0c7a69; --on-accent: #ffffff; --accent-text: #0a6657; --warn: #a3281a; color-scheme: light;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+.svc-layout > div { min-width: 0; }
+#visTabs { flex-wrap: wrap; overflow: visible; gap: 0 22px; }
+html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+body {
+  background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 60; background: var(--bar); }
+h1, h2, h3, h4 { margin: 0; text-wrap: balance; font-family: var(--font); }
+p { margin: 0; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.wrap { max-width: var(--content); margin-inline: auto; }
+.bleed { margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px))); padding-inline: max(16px, env(safe-area-inset-left, 0px)); }
+.mono { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; }
+.num { font-variant-numeric: tabular-nums; }
+
+/* header */
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50; background: var(--bar); color: var(--hero-fg);
+  margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px))); padding-inline: max(16px, env(safe-area-inset-left, 0px)); border-bottom: 1px solid var(--hero-line); }
+.top .wrap { display: flex; align-items: center; gap: 18px; min-height: 60px; }
+.brand { display: flex; align-items: center; gap: 12px; text-decoration: none; white-space: nowrap; }
+.badge { width: 46px; height: 46px; border-radius: 10px; background: var(--hero-accent); color: #03211c; display: grid; place-items: center; flex: none; }
+.badge svg { width: 74%; height: auto; fill: currentColor; }
+.brand-t { display: grid; font-weight: 900; font-size: 1.5rem; letter-spacing: -0.04em; line-height: 0.9; }
+.brand-t small { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.32em; text-transform: uppercase; color: var(--hero-accent); line-height: 1.2; }
+.nav { display: flex; gap: 2px; overflow-x: auto; flex: 1; min-width: 0; scrollbar-width: none; justify-content: flex-end; }
+.nav::-webkit-scrollbar { display: none; }
+.nav a { padding: 8px 12px; text-decoration: none; white-space: nowrap; color: var(--hero-muted); font-size: 0.9rem; font-weight: 600; }
+.nav a:hover { color: var(--hero-fg); }
+.cart-btn { border: 1px solid var(--hero-accent); background: transparent; color: var(--hero-accent); font-family: var(--font); font-size: 0.88rem; font-weight: 700; padding: 9px 16px; cursor: pointer; white-space: nowrap; border-radius: 999px; }
+.cart-btn:hover { background: var(--hero-accent); color: #03211c; }
+
+/* buttons */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; border: 1px solid transparent; font-family: var(--font); font-weight: 700; font-size: 0.95rem; padding: 14px 26px; cursor: pointer; text-decoration: none; text-align: center; border-radius: 999px; }
+.btn-primary { background: var(--accent); color: var(--on-accent); }
+.btn-primary:hover { filter: brightness(1.08); }
+.btn-hero { background: var(--hero-accent); color: #03211c; }
+.btn-hero:hover { filter: brightness(1.08); }
+.btn-ghost { border-color: #35596a; color: var(--hero-fg); background: transparent; }
+.btn-ghost:hover { border-color: var(--hero-accent); color: var(--hero-accent); }
+.btn-line { border-color: var(--line); background: transparent; color: var(--fg); }
+.btn-line:hover { border-color: var(--accent); color: var(--accent-text); }
+.btn-sm { padding: 10px 18px; font-size: 0.88rem; }
+.btn-block { width: 100%; }
+
+/* hero */
+.hero { background: var(--hero-bg); color: var(--hero-fg); position: relative; overflow: hidden;
+  background-image: radial-gradient(900px 500px at 85% 0%, rgba(126,224,207,0.16), transparent 60%), radial-gradient(700px 400px at 0% 100%, rgba(30,90,120,0.35), transparent 60%); }
+.bigej { position: absolute; right: -2%; top: 1%; width: clamp(20rem, 54vw, 46rem); height: auto; fill: none; stroke: rgba(126,224,207,0.34); stroke-width: 0.35; stroke-linejoin: miter; pointer-events: none; user-select: none; }
+.hero-copy { position: relative; padding-block: 72px 56px; max-width: 940px; }
+.hero .tag { color: var(--hero-accent); display: flex; align-items: center; gap: 12px; }
+.hero .tag::before { content: ""; width: 36px; height: 2px; background: var(--hero-accent); }
+.hero h1 { font-weight: 900; font-size: clamp(2.8rem, 8.6vw, 6.8rem); line-height: 0.96; letter-spacing: -0.045em; margin-top: 22px; }
+.hero h1 .ln { display: block; overflow: hidden; padding-block: 0.04em; }
+.hero h1 .ln > span { display: block; animation: rise 0.9s cubic-bezier(.2,.7,.1,1) both; }
+.hero h1 .ln:nth-child(2) > span { animation-delay: 0.12s; }
+.hero h1 em { font-style: normal; color: var(--hero-accent); }
+@keyframes rise { from { transform: translateY(100%); opacity: 0; } to { transform: none; opacity: 1; } }
+.hero .lead { margin-top: 26px; font-size: 1.15rem; max-width: 54ch; color: var(--hero-muted); }
+.hero .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+
+/* portals */
+.portals { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; padding-bottom: 56px; }
+.portal { position: relative; display: block; text-decoration: none; color: var(--hero-fg); min-width: 0; overflow: hidden; border-radius: 6px; }
+.portal .ph { transition: transform 0.6s cubic-bezier(.2,.7,.1,1); background: linear-gradient(165deg, #103242, #0a2430); }
+.portal:hover .ph { transform: scale(1.04); }
+.portal .cap { position: absolute; inset: auto 0 0 0; padding: 60px 18px 18px; background: linear-gradient(to top, rgba(3,16,24,0.92), rgba(3,16,24,0)); }
+.portal .cap h2 { font-weight: 900; font-size: clamp(1.7rem, 3.4vw, 2.8rem); line-height: 1; letter-spacing: -0.04em; }
+.portal .cap p { color: var(--hero-accent); font-size: 1rem; font-weight: 600; margin-top: 4px; }
+.portal .go { position: absolute; top: 14px; right: 14px; width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(232,241,238,0.45); display: grid; place-items: center; background: rgba(3,16,24,0.4); }
+.portal:hover .go { background: var(--hero-accent); color: #03211c; border-color: var(--hero-accent); }
+
+/* photo slot */
+.ph { position: relative; width: 100%; aspect-ratio: var(--r, 4 / 5); max-width: 100%; margin: 0; overflow: hidden; background: linear-gradient(165deg, var(--surface-2), var(--surface)); }
+.ph img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.ph figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 18px 10px 6px; font-size: 0.66rem; color: #e8f1ee; background: linear-gradient(to top, rgba(0,0,0,0.65), transparent); }
+.ph.empty::before { content: ""; position: absolute; inset: 12px; border: 1px dashed rgba(143,169,179,0.45); }
+.ph.empty::after { content: attr(data-label); position: absolute; left: 22px; bottom: 20px; right: 22px; font-size: 0.66rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.portal .ph.empty::after { bottom: auto; top: 22px; right: 70px; color: #9bb6bf; }
+
+/* sections */
+section { padding-block: var(--s-9) 0; }
+.sec-head { display: grid; gap: 14px; margin-bottom: 38px; max-width: 800px; }
+.sec-head .mono { color: var(--accent-text); }
+.sec-head h2 { font-weight: 900; font-size: clamp(2.2rem, 5.6vw, 4.2rem); line-height: 1; letter-spacing: -0.045em; }
+.sec-head h2 em { font-style: normal; color: var(--accent-text); }
+.sec-head p { color: var(--muted); font-size: 1.08rem; max-width: 58ch; }
+
+/* breed chapters */
+.chapter { padding-block: 64px 12px; border-top: 1px solid var(--line); }
+.chapter-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 8px 28px; }
+.chapter h3 { font-weight: 900; font-size: clamp(3rem, 11vw, 8.6rem); line-height: 0.9; letter-spacing: -0.06em; }
+.chapter .tagline { font-size: clamp(1.1rem, 2vw, 1.6rem); font-weight: 700; color: var(--accent-text); padding-bottom: 8px; letter-spacing: -0.02em; }
+.chapter-body { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 40px; margin-top: 36px; align-items: start; }
+.chapter .intro { font-size: 1.15rem; max-width: 56ch; }
+.specs { display: grid; grid-template-columns: 1fr 1fr; margin: 26px 0 0; border-top: 1px solid var(--line); }
+.specs > div { padding: 14px 14px 14px 0; border-bottom: 1px solid var(--line); min-width: 0; }
+.specs dt { color: var(--muted); }
+.specs dd { margin: 4px 0 0; font-weight: 600; }
+.energy { display: inline-flex; gap: 4px; vertical-align: middle; }
+.energy i { width: 22px; height: 6px; background: var(--line); border-radius: 3px; }
+.energy i.on { background: var(--accent); }
+.climate { margin-top: 22px; padding: 16px 18px; background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--accent); font-size: 0.96rem; }
+.climate .mono { display: block; color: var(--accent-text); margin-bottom: 4px; }
+
+.dogs-head { margin-top: 44px; padding-bottom: 10px; color: var(--muted); }
+.dog { display: grid; grid-template-columns: 92px minmax(0, 1fr) auto auto; gap: 10px 22px; align-items: center; padding: 18px 0; border-top: 1px solid var(--line); }
+.dog:last-child { border-bottom: 1px solid var(--line); }
+.dog h4 { margin: 0; font-weight: 800; font-size: 1.7rem; line-height: 1; letter-spacing: -0.04em; }
+.dog .meta { color: var(--muted); font-size: 0.92rem; margin-top: 4px; }
+.dog .tags { display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: 8px; font-size: 0.82rem; }
+.dog .tags span::before { content: "·"; margin-right: 6px; color: var(--accent-text); font-weight: 900; }
+.price { font-weight: 800; font-variant-numeric: tabular-nums; font-size: 1.15rem; white-space: nowrap; letter-spacing: -0.02em; }
+.price small { display: block; font-size: 0.66rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+
+/* services */
+.svc-layout { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 40px; align-items: start; }
+.svc { border: 1px solid var(--line); background: var(--surface); padding: 24px; margin-bottom: 14px; border-radius: 6px; }
+.svc-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px 20px; flex-wrap: wrap; }
+.svc h3 { font-weight: 800; font-size: 1.5rem; line-height: 1.1; letter-spacing: -0.03em; }
+.svc-d { color: var(--muted); margin-top: 6px; max-width: 54ch; }
+.svc-meta { display: flex; flex-wrap: wrap; gap: 4px 26px; margin-top: 14px; font-size: 0.88rem; }
+.svc-meta b { font-weight: 700; color: var(--accent-text); }
+.inc-title { margin: 18px 0 8px; color: var(--muted); }
+.svc ul { margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 22px; }
+.svc li { position: relative; padding-left: 18px; font-size: 0.93rem; min-width: 0; }
+.svc li::before { content: ""; position: absolute; left: 0; top: 0.55em; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+.svc-foot { margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--line); display: flex; justify-content: flex-end; }
+.svc.pack { border-color: var(--accent); }
+.packs-title { margin: 44px 0 14px; color: var(--accent-text); }
+
+.panel { background: var(--surface); border: 1px solid var(--line); padding: 26px; min-width: 0; border-radius: 6px; }
+.panel.sticky { position: sticky; top: calc(76px + env(safe-area-inset-top, 0px)); }
+.panel h3 { font-weight: 900; font-size: 1.7rem; line-height: 1.05; letter-spacing: -0.04em; }
+.panel .sub { color: var(--muted); font-size: 0.93rem; margin: 8px 0 18px; }
+form { display: grid; gap: 14px; }
+label { display: grid; gap: 6px; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+input, select, textarea { font-family: var(--font); font-size: 1rem; letter-spacing: 0; text-transform: none; color: var(--fg); background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 12px; width: 100%; min-width: 0; }
+input:focus, select:focus, textarea:focus { border-color: var(--accent); outline: 2px solid transparent; box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 28%, transparent); }
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.confirm { margin-top: 16px; border: 1px solid var(--accent); border-radius: 6px; padding: 16px 18px; display: grid; gap: 12px; }
+.confirm b { color: var(--accent-text); }
+.confirm pre { margin: 0; white-space: pre-wrap; font-family: var(--font); font-size: 0.92rem; }
+.err { color: var(--warn); font-weight: 600; font-size: 0.92rem; }
+
+/* shop */
+.tabs { display: flex; gap: 4px 22px; overflow-x: auto; scrollbar-width: none; border-bottom: 1px solid var(--line); margin-bottom: 14px; }
+.tabs::-webkit-scrollbar { display: none; }
+.tab { border: 0; background: transparent; color: var(--muted); font-family: var(--font); font-size: 0.9rem; font-weight: 600; padding: 12px 0; cursor: pointer; white-space: nowrap; border-bottom: 3px solid transparent; margin-bottom: -1px; }
+.tab:hover { color: var(--fg); }
+.tab[aria-pressed="true"] { color: var(--accent-text); border-bottom-color: var(--accent); }
+.filter-lab { color: var(--muted); margin: 20px 0 2px; display: block; }
+.shop-count { color: var(--muted); margin: 10px 0 0; }
+.group { margin-top: 46px; }
+.group-head { display: flex; align-items: baseline; justify-content: space-between; gap: 6px 24px; flex-wrap: wrap; padding-bottom: 12px; margin-bottom: 16px; border-bottom: 2px solid var(--fg); }
+.group-head h3 { font-weight: 900; font-size: 1.9rem; letter-spacing: -0.045em; line-height: 1; }
+.group-head p { color: var(--muted); font-size: 0.95rem; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
+.pcard { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 20px; display: flex; flex-direction: column; gap: 10px; min-width: 0; transition: border-color .2s; }
+.pcard:hover { border-color: var(--accent); }
+.pcard h4 { font-weight: 800; font-size: 1.15rem; line-height: 1.2; letter-spacing: -0.02em; }
+.pcard p { color: var(--muted); font-size: 0.92rem; }
+.pcard dl { margin: 0; display: grid; gap: 6px; font-size: 0.85rem; border-top: 1px solid var(--line); padding-top: 10px; }
+.pcard dt { display: inline; font-weight: 700; color: var(--accent-text); }
+.pcard dd { display: inline; margin: 0; }
+.pcard .foot { margin-top: auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 10px; flex-wrap: wrap; }
+.empty-note { padding: 32px; text-align: center; color: var(--muted); border: 1px dashed var(--line); border-radius: 6px; }
+
+/* drawer */
+.scrim { position: fixed; inset: 0; background: rgba(2,8,12,0.6); z-index: 70; }
+.drawer { position: fixed; top: 0; bottom: 0; right: 0; width: min(430px, 100%); z-index: 80; background: var(--surface); color: var(--fg); display: flex; flex-direction: column; border-left: 1px solid var(--line);
+  padding: calc(20px + env(safe-area-inset-top, 0px)) max(20px, env(safe-area-inset-right, 0px)) calc(20px + env(safe-area-inset-bottom, 0px)) 20px; }
+.drawer header { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.drawer h3 { font-weight: 900; font-size: 1.7rem; letter-spacing: -0.04em; }
+.x-btn { border: 1px solid var(--line); background: transparent; color: var(--fg); width: 40px; height: 40px; font-size: 1.3rem; cursor: pointer; border-radius: 50%; }
+.lines { flex: 1; overflow-y: auto; margin: 18px 0; display: grid; gap: 10px; align-content: start; }
+.line { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 6px 12px; padding: 14px 0; border-bottom: 1px solid var(--line); align-items: center; }
+.line b { font-weight: 600; font-size: 0.95rem; }
+.qty { display: inline-flex; align-items: center; gap: 10px; }
+.qty button { width: 30px; height: 30px; border: 1px solid var(--line); background: transparent; color: var(--fg); cursor: pointer; border-radius: 50%; }
+.linkbtn { border: 0; background: transparent; color: var(--muted); font-family: var(--font); font-size: 0.82rem; text-decoration: underline; cursor: pointer; justify-self: end; }
+.total { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
+.total .price { font-size: 1.5rem; }
+.pay { font-size: 0.85rem; color: var(--muted); margin-bottom: 14px; }
+
+/* guarantees */
+.guar { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.guar > div { border: 1px solid var(--line); background: var(--surface); border-radius: 6px; padding: 26px; }
+.guar .mono { color: var(--accent-text); }
+.guar h3 { font-weight: 800; font-size: 1.5rem; line-height: 1.1; letter-spacing: -0.035em; margin-top: 8px; }
+.guar p { color: var(--muted); margin-top: 8px; max-width: 46ch; }
+
+/* instagram */
+.ig-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.ig-grid > div { border: 1px solid var(--line); background: var(--surface); border-radius: 6px; padding: 24px; }
+.ig-grid h3 { font-weight: 800; font-size: 1.3rem; letter-spacing: -0.03em; line-height: 1.1; margin-top: 8px; }
+.ig-grid p { color: var(--muted); margin-top: 8px; font-size: 0.95rem; }
+.ig-grid .mono { color: var(--accent-text); }
+.ig-cta { margin-top: 22px; display: flex; flex-wrap: wrap; align-items: center; gap: 14px 22px; }
+.ig-cta .tagrow { color: var(--muted); font-size: 0.9rem; }
+/* contact */
+.contact { margin-top: 96px; background: var(--hero-bg); color: var(--hero-fg); position: relative; overflow: hidden; padding-block: 72px; }
+.contact .wrap { position: relative; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 48px; align-items: start; }
+.contact h2 { font-weight: 900; font-size: clamp(2.6rem, 7vw, 5.6rem); line-height: 0.95; letter-spacing: -0.05em; }
+.contact h2 em { font-style: normal; color: var(--hero-accent); }
+.channels { display: grid; gap: 0; margin: 32px 0 0; border-top: 1px solid var(--hero-line); }
+.channels > div { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 12px; padding: 16px 0; border-bottom: 1px solid var(--hero-line); }
+.channels dt { color: var(--hero-muted); }
+.channels dd { margin: 0; font-size: 1.05rem; overflow-wrap: anywhere; }
+.contact .note { font-size: 0.8rem; color: var(--hero-muted); margin-top: 24px; max-width: 58ch; }
+.contact .panel { background: var(--surface); color: var(--fg); }
+footer { background: var(--hero-bg); color: var(--hero-muted); padding-block: 0 30px; }
+footer .wrap { border-top: 1px solid var(--hero-line); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; }
+
+.wa-fab { position: fixed; z-index: 40; right: calc(16px + env(safe-area-inset-right, 0px)); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); background: var(--hero-accent); color: #03211c; font-size: 0.9rem; font-weight: 800; text-decoration: none; padding: 13px 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.4); display: inline-flex; gap: 8px; align-items: center; border-radius: 999px; }
+
+@media (max-width: 900px) {
+  .ig-grid { grid-template-columns: 1fr; }
+  .portals { grid-template-columns: 1fr; }
+  .portal .ph { --r: 4 / 3 !important; }
+  .chapter-body, .svc-layout, .contact .wrap { grid-template-columns: 1fr; gap: 32px; }
+  .panel.sticky { position: static; }
+  .guar { grid-template-columns: 1fr; }
+  .chapter-body .ph { max-width: 460px; }
+}
+@media (max-width: 560px) {
+  .nav { display: none; }
+  .top .wrap { justify-content: space-between; }
+  .dog { grid-template-columns: 72px minmax(0, 1fr); }
+  .dog .price, .dog .btn { grid-column: 1 / -1; }
+  .dog .btn { width: 100%; }
+  .svc ul { grid-template-columns: 1fr; }
+  .svc-foot .btn { width: 100%; }
+  .two, .specs { grid-template-columns: 1fr; }
+  .channels > div { grid-template-columns: 1fr; gap: 2px; }
+  section { padding-block-start: 64px; }
+  .hero-copy { padding-block: 48px 40px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; scroll-behavior: auto !important; } }
+/* v2: menos modelo, mais catálogo */
+.top .brand { gap: 14px; }
+.mk { width: 48px; height: auto; fill: var(--hero-accent); flex: none; }
+.brand-t { display: grid; gap: 3px; border-left: 1px solid #2a4f5e; padding-left: 14px; font-size: 1rem; letter-spacing: 0; font-weight: 700; line-height: 1.1; }
+.brand-t b { font-weight: 800; letter-spacing: 0.24em; text-transform: uppercase; font-size: 0.92rem; }
+.brand-t small { font-size: 0.6rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--hero-muted); line-height: 1.2; }
+.hero { background-image: none; }
+.sec-head .mono, .guar .mono, .ig-grid .mono { display: none; }
+.sec-head h2 { font-size: clamp(2rem, 4.2vw, 3.1rem); font-weight: 800; letter-spacing: -0.035em; line-height: 1.04; }
+.sec-head h2 em, .contact h2 em { color: inherit; }
+.btn, .cart-btn, .wa-fab { border-radius: var(--radius); }
+.panel, .confirm, input, select, textarea { border-radius: var(--radius-sm); }
+.climate { background: none; border: 0; border-top: 1px solid var(--line); padding: 14px 0 0; }
+.climate .mono { display: inline; margin: 0 8px 0 0; }
+.svc { padding: 0; margin: 0; background: none; border: 0; border-top: 1px solid var(--line); border-radius: 0; }
+.svc:last-child { border-bottom: 1px solid var(--line); }
+.svc.pack { border: 0; border-top: 1px solid var(--line); }
+.svc.pack:last-child { border-bottom: 1px solid var(--line); }
+.svc summary { list-style: none; display: grid; grid-template-columns: minmax(0, 1fr) 150px auto 18px; gap: 6px 18px; align-items: center; padding: 18px 0; cursor: pointer; }
+.svc summary::-webkit-details-marker { display: none; }
+.svc .sn { font-weight: 800; font-size: 1.2rem; letter-spacing: -0.03em; line-height: 1.15; }
+.svc .sd { color: var(--muted); font-size: 0.9rem; }
+.svc .price { text-align: right; }
+.plus { width: 14px; height: 14px; position: relative; justify-self: end; }
+.plus::before, .plus::after { content: ""; position: absolute; background: var(--fg); left: 0; right: 0; top: 6px; height: 2px; }
+.plus::after { transform: rotate(90deg); transition: transform 0.2s; }
+.svc[open] .plus::after { transform: rotate(0); }
+.svc-body { padding: 0 0 24px; display: grid; gap: 12px; max-width: 62ch; }
+.svc-for { font-size: 0.9rem; color: var(--muted); }
+.svc-for b { color: var(--accent-text); }
+.svc-body .btn { justify-self: start; margin-top: 4px; }
+.group { margin-top: 38px; }
+.group-head { border-bottom: 0; padding-bottom: 4px; margin-bottom: 4px; }
+.group-head h3 { font-size: 1.6rem; font-weight: 800; }
+.prow { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.2fr) 120px 130px; gap: 6px 22px; align-items: center; padding: 16px 0; border-top: 1px solid var(--line); }
+.prow:last-child { border-bottom: 1px solid var(--line); }
+.prow h4 { font-weight: 700; font-size: 1.05rem; letter-spacing: -0.02em; line-height: 1.25; }
+.prow p { color: var(--muted); font-size: 0.9rem; }
+.pv { display: grid; gap: 2px; font-size: 0.85rem; color: var(--muted); }
+.pv b { color: var(--fg); font-weight: 600; margin-right: 6px; }
+.pp { text-align: right; }
+.pa { justify-self: end; }
+.guar { gap: 0 48px; }
+.guar > div, .ig-grid > div { border: 0; border-top: 1px solid var(--line); background: none; border-radius: 0; padding: 20px 0 24px; }
+.guar h3, .ig-grid h3 { margin-top: 0; font-size: 1.2rem; }
+@media (max-width: 700px) {
+  .svc summary { grid-template-columns: minmax(0, 1fr) auto 18px; }
+  .svc .sn { grid-column: 1; grid-row: 1; } .svc .price { grid-column: 2; grid-row: 1; } .svc .plus { grid-column: 3; grid-row: 1; } .svc .sd { grid-column: 1 / -1; grid-row: 2; }
+  .prow { grid-template-columns: minmax(0, 1fr) auto; }
+  .pn, .pv { grid-column: 1 / -1; } .pp { text-align: left; } .svc ul { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .nav { display: flex; order: 3; flex-basis: 100%; justify-content: flex-start; margin-inline: -8px; }
+  .top .wrap { flex-wrap: wrap; row-gap: 0; padding-top: 8px; }
+  .brand-t small { display: none; }
+}
+/* acessibilidade: alvos de toque, texto mínimo, atalho de teclado */
+.skip { position: absolute; left: 8px; top: -80px; z-index: 100; background: var(--hero-accent); color: #03211c; padding: 12px 16px; font-weight: 700; border-radius: 4px; }
+.skip:focus { top: calc(8px + env(safe-area-inset-top, 0px)); }
+.btn { min-height: 44px; }
+.btn-sm { padding: 12px 20px; min-height: 44px; }
+.cart-btn { min-height: 44px; }
+.nav a { padding: 12px 12px; }
+.tab { padding: 15px 0; }
+.qty button, .x-btn { width: 44px; height: 44px; }
+.linkbtn { padding: 12px 4px; }
+.mono { font-size: 0.75rem; }
+.ph figcaption { font-size: 0.75rem; }
+.price small { font-size: 0.7rem; }
+/* v3: visitas, serviços por grupo, seletor, movimento */
+html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+.progress { position: fixed; left: 0; right: 0; top: env(safe-area-inset-top, 0px); height: 3px; background: var(--hero-accent); transform: scaleX(0); transform-origin: left; z-index: 60; pointer-events: none; }
+.nav a { position: relative; transition: color 0.2s; }
+.nav a::after { content: ""; position: absolute; left: 12px; right: 12px; bottom: 2px; height: 2px; background: var(--hero-accent); transform: scaleX(0); transform-origin: left; transition: transform 0.3s cubic-bezier(.2,.7,.1,1); }
+.nav a[aria-current], .nav a:hover { color: var(--hero-fg); }
+.nav a[aria-current]::after, .nav a:hover::after { transform: scaleX(1); }
+.bigej path { stroke-dasharray: 1; stroke-dashoffset: 1; fill: rgba(126,224,207,0); animation: draw 2.8s 0.2s cubic-bezier(.6,0,.2,1) forwards, fillin 1.6s 2.4s ease forwards; }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+@keyframes fillin { to { fill: rgba(126,224,207,0.07); } }
+.bigej { will-change: transform; }
+.rv { opacity: 0; transform: translateY(26px); transition: opacity 0.7s ease var(--d, 0ms), transform 0.8s cubic-bezier(.2,.7,.1,1) var(--d, 0ms); }
+.rv.in { opacity: 1; transform: none; }
+.energy i.on { transition: transform 0.6s cubic-bezier(.2,.7,.1,1) calc(var(--i, 0) * 90ms + 0.35s); transform-origin: left; }
+.chapter.rv:not(.in) .energy i.on { transform: scaleX(0); }
+.dog { transition: border-color 0.2s, background 0.2s; }
+.dog:hover, .prow:hover { background: rgba(126,224,207,0.04); }
+.btn { transition: transform 0.15s, filter 0.2s, border-color 0.2s, color 0.2s; }
+.btn:active { transform: translateY(1px); }
+.portal { transition: transform 0.4s cubic-bezier(.2,.7,.1,1); }
+.portal:hover { transform: translateY(-4px); }
+.svc-group { margin-bottom: 34px; }
+.sg-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 16px; padding-bottom: 10px; }
+.sg-head h3 { font-weight: 800; font-size: 1.5rem; letter-spacing: -0.03em; }
+.sg-head p { color: var(--muted); font-size: 0.92rem; }
+.finder { margin-top: 8px; margin-bottom: 20px; padding: 24px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); display: grid; gap: 14px; }
+.finder h3 { font-weight: 800; font-size: 1.4rem; letter-spacing: -0.03em; }
+.f-row { display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 8px 16px; align-items: center; }
+.f-lab { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { min-height: 44px; padding: 0 16px; border: 1px solid var(--line); background: transparent; color: var(--fg); font-family: var(--font); font-weight: 600; font-size: 0.92rem; border-radius: 4px; cursor: pointer; transition: background 0.2s, border-color 0.2s, color 0.2s; }
+.chip:hover { border-color: var(--accent); }
+.chip[aria-pressed="true"] { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+.f-res { font-size: 1.05rem; max-width: 70ch; color: var(--muted); min-height: 3.2em; }
+.f-res b { color: var(--fg); font-weight: 800; margin-right: 6px; }
+.f-res a { color: var(--accent-text); font-weight: 700; white-space: nowrap; }
+.vmeta { display: grid; grid-template-columns: 1fr 2fr; gap: 12px 24px; margin: 18px 0 0; }
+.vmeta dt { color: var(--muted); } .vmeta dd { margin: 4px 0 0; font-weight: 700; font-size: 1.05rem; }
+.vcols { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 32px; margin-top: 20px; }
+.vcols h3 { margin: 0 0 8px; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent-text); }
+.vcols ul, .rules { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+.vcols li, .rules li { position: relative; padding-left: 18px; font-size: 0.95rem; }
+.vcols li::before, .rules li::before { content: ""; position: absolute; left: 0; top: 0.55em; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+.steps { margin: 0; padding: 0; list-style: none; counter-reset: st; display: grid; }
+.steps li { counter-increment: st; display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 2px 14px; padding: 16px 0; border-top: 1px solid var(--line); }
+.steps li::before { content: counter(st, decimal-leading-zero); grid-row: 1 / 3; font-weight: 900; font-size: 1.5rem; letter-spacing: -0.04em; color: var(--accent-text); line-height: 1; }
+.steps li b { font-weight: 800; font-size: 1.08rem; letter-spacing: -0.02em; }
+.steps li span { color: var(--muted); font-size: 0.95rem; }
+.note-sm { margin-top: 18px; font-size: 0.85rem; color: var(--muted); }
+#visitas .packs-title { margin-top: 36px; }
+@media (max-width: 700px) { .f-row, .vmeta, .vcols { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: reduce) { .bigej path { stroke-dashoffset: 0 !important; fill: rgba(126,224,207,0.07) !important; } .rv { opacity: 1 !important; transform: none !important; } .progress { transition: none; } }
+/* acessibilidade v3 */
+.brand { min-height: 44px; }
+.linkbtn { min-height: 44px; }
+.tab { min-width: 44px; }
+::placeholder { color: var(--muted); opacity: 1; }
+[aria-invalid="true"] { border-color: var(--warn) !important; box-shadow: 0 0 0 2px color-mix(in srgb, var(--warn) 40%, transparent); }
+.f-res a, .note-sm a, .sub a { text-decoration: underline; text-underline-offset: 3px; }
+@media (forced-colors: active) { .chip[aria-pressed="true"], .tab[aria-pressed="true"] { outline: 2px solid Highlight; } }
+/* v4: interatividade */
+.theme-btn { width: 44px; height: 44px; border: 1px solid #35596a; background: transparent; color: var(--hero-fg); border-radius: 4px; cursor: pointer; display: grid; place-items: center; flex: none; transition: border-color 0.2s, color 0.2s; }
+.theme-btn:hover { border-color: var(--hero-accent); color: var(--hero-accent); }
+.cart-btn.bump { animation: bump 0.45s ease; }
+@keyframes bump { 30% { transform: scale(1.12); } 100% { transform: none; } }
+.compare, .planner { margin: 28px 0 8px; }
+.compare h3 { font-weight: 800; font-size: 1.4rem; letter-spacing: -0.03em; margin-bottom: 14px; }
+.cmp-sel { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; max-width: 520px; }
+.cmp-grid { display: grid; grid-template-columns: minmax(110px, 0.8fr) 1fr 1fr; margin-top: 18px; border-top: 1px solid var(--line); }
+.cmp-grid > div { padding: 12px 14px 12px 0; border-bottom: 1px solid var(--line); min-width: 0; font-size: 0.95rem; }
+.cmp-h { font-weight: 900; font-size: 1.4rem; letter-spacing: -0.04em; }
+.cmp-l { color: var(--muted); font-size: 0.8rem !important; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
+.cbar { display: block; height: 8px; max-width: 220px; background: var(--line); border-radius: 4px; overflow: hidden; margin-top: 8px; }
+.cbar i { display: block; height: 100%; background: var(--accent); border-radius: 4px; transition: width 0.6s cubic-bezier(.2,.7,.1,1); }
+.pl-row { display: grid; grid-template-columns: minmax(0, 1fr) 150px auto; gap: 6px 18px; align-items: center; padding: 14px 0; border-top: 1px solid var(--line); }
+.pl-row:last-child { border-bottom: 1px solid var(--line); }
+.pl-n b { display: block; font-weight: 800; font-size: 1.1rem; letter-spacing: -0.02em; }
+.pl-n span { color: var(--muted); font-size: 0.88rem; }
+.pl-p { text-align: right; }
+.pl-row .qty span { min-width: 28px; text-align: center; font-weight: 700; font-variant-numeric: tabular-nums; }
+.pl-total { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px 24px; margin-top: 22px; }
+.pl-total .mono { display: block; color: var(--muted); }
+.pl-total .price { font-size: 2.2rem; letter-spacing: -0.04em; }
+.shop-tools { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 12px; max-width: 640px; margin-top: 18px; }
+.dact { display: flex; flex-wrap: wrap; align-items: center; gap: 0 14px; margin-top: 4px; }
+.dact .linkbtn { justify-self: auto; }
+.fav { min-height: 44px; padding: 0 6px; border: 0; background: transparent; color: var(--fg); font-family: var(--font); font-weight: 700; font-size: 0.85rem; cursor: pointer; }
+.fav[aria-pressed="true"] { color: var(--accent-text); }
+.fav span { display: inline-block; transition: transform 0.2s; font-size: 1.1rem; }
+.fav:hover span { transform: scale(1.2); }
+.favbar { position: fixed; z-index: 40; left: calc(16px + env(safe-area-inset-left, 0px)); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); right: 150px; max-width: 520px; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 14px; padding: 10px 14px; background: var(--surface); color: var(--fg); border: 1px solid var(--accent); border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.35); font-weight: 700; font-size: 0.9rem; }
+.chapter { overflow-x: clip; }
+.chapter h3 { will-change: transform; }
+@media (max-width: 700px) { .pl-row { grid-template-columns: minmax(0, 1fr) auto; } .pl-p { text-align: left; grid-column: 1; } .pl-row .qty { grid-column: 2; grid-row: 1 / 3; } .cmp-sel, .shop-tools { grid-template-columns: 1fr; } .cmp-grid { grid-template-columns: 0.8fr 1fr 1fr; font-size: 0.85rem; } .favbar { right: 16px; bottom: calc(76px + env(safe-area-inset-bottom, 0px)); } }
+@media (prefers-reduced-motion: reduce) { .cart-btn.bump { animation: none; } .cbar i { transition: none; } }
+/* v5: direção "caderneta" */
+.hero h1, .chapter h3, .sec-head h2, .contact h2, .panel h3, .finder h3, .compare h3, .sg-head h3, .group-head h3, .drawer h3, .portal .cap h2, .dog h4, .steps li::before { font-family: var(--font-display); font-weight: 800; }
+.hero h1 { letter-spacing: -0.035em; }
+.chapter h3 { letter-spacing: -0.04em; }
+.sec-head h2, .contact h2 { letter-spacing: -0.03em; }
+.btn, .cart-btn, .wa-fab, .chip, .theme-btn, .favbar { border-radius: var(--radius); }
+.btn-primary, .btn-hero { box-shadow: 0 3px 0 rgba(0,0,0,0.28); }
+.btn-primary:active, .btn-hero:active { box-shadow: 0 1px 0 rgba(0,0,0,0.28); }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap">
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><symbol id="ej" viewBox="0 0 120 100"><path d="M16 22H54V34H28V44H50V56H28V66H82A10 10 0 0 0 92 56V22H104V56A22 22 0 0 1 82 78H16Z"/></symbol></svg>
+<a class="skip" href="#inicio">Saltar para o conteúdo</a>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#inicio" aria-label="Canil EJ, início"><svg class="mk" viewBox="0 0 120 100" aria-hidden="true"><use href="#ej"/></svg><span class="brand-t"><b>Canil</b><small>Ilha de Luanda</small></span></a>
+    <nav class="nav" aria-label="Principal">
+      <a href="#caes">Cães</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#visitas">Visitas</a>
+      <a href="#loja">Loja</a>
+      <a href="#garantias">Garantias</a>
+      <a href="#instagram">Instagram</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <button class="theme-btn" id="themeBtn" type="button" aria-pressed="false" aria-label="Tema claro"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="8"/><path d="M12 4v16" /><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor"/></svg></button>
+    <button class="cart-btn" id="openCart" type="button" aria-label="Abrir carrinho">Carrinho (<span id="cartN">0</span>)</button>
+  </div>
+</header>
+
+<main id="inicio">
+  <div class="hero bleed">
+    <svg class="bigej" viewBox="0 0 120 100" aria-hidden="true"><path pathLength="1" d="M16 22H54V34H28V44H50V56H28V66H82A10 10 0 0 0 92 56V22H104V56A22 22 0 0 1 82 78H16Z"/></svg>
+    <div class="wrap">
+      <div class="hero-copy">
+        <div class="tag mono">Canil EJ · Ilha de Luanda</div>
+        <h1><span class="ln"><span>Nascem para proteger.</span></span><span class="ln"><span>Crescem para <em>amar.</em></span></span></h1>
+        <p class="lead">Boerboel, Husky Siberiano e Rottweiler criados com saúde, pedigree e acompanhamento veterinário. E tudo o que eles vão precisar depois, no mesmo canil.</p>
+        <div class="actions">
+          <a class="btn btn-hero" href="#caes">Conhecer os cães</a>
+          <a class="btn btn-ghost" href="#visitas">Marcar visita</a>
+        </div>
+      </div>
+      <div class="portals" id="portals"></div>
+    </div>
+  </div>
+
+  <section id="caes" class="wrap">
+    <div class="sec-head">
+      <span class="mono">Nossos cães</span>
+      <h2>Escolha quem vai <em>mudar</em> a sua casa.</h2>
+      <p>Três raças criadas com critério. Cada ficha mostra o temperamento, o porte e o que o cão precisa de si.</p>
+    </div>
+    <div class="finder" id="finder">
+      <h3>Qual raça combina com a sua casa?</h3>
+      <div class="f-row" data-q="obj"><span class="f-lab">Procura</span><div class="chips" role="group" aria-label="O que procura">
+        <button type="button" class="chip" aria-pressed="false" data-v="guarda">Guarda e segurança</button>
+        <button type="button" class="chip" aria-pressed="false" data-v="familia">Companhia para a família</button>
+        <button type="button" class="chip" aria-pressed="false" data-v="atividade">Companheiro de atividade</button></div></div>
+      <div class="f-row" data-q="esp"><span class="f-lab">Espaço</span><div class="chips" role="group" aria-label="Espaço em casa">
+        <button type="button" class="chip" aria-pressed="false" data-v="grande">Quintal grande</button>
+        <button type="button" class="chip" aria-pressed="false" data-v="pequeno">Quintal pequeno</button>
+        <button type="button" class="chip" aria-pressed="false" data-v="sem">Sem quintal</button></div></div>
+      <div class="f-row" data-q="exp"><span class="f-lab">Experiência</span><div class="chips" role="group" aria-label="Experiência com cães">
+        <button type="button" class="chip" aria-pressed="false" data-v="primeiro">Primeiro cão</button>
+        <button type="button" class="chip" aria-pressed="false" data-v="grandes">Já tive cães grandes</button></div></div>
+      <div class="f-res" id="fRes" aria-live="polite">Escolha uma opção em cada linha e mostramos a raça que mais se aproxima.</div>
+    </div>
+    <div class="compare" id="compare">
+      <h3>Comparar raças</h3>
+      <div class="cmp-sel">
+        <label for="cmpA">Raça A<select id="cmpA"></select></label>
+        <label for="cmpB">Raça B<select id="cmpB"></select></label>
+      </div>
+      <div id="cmpOut" aria-live="polite"></div>
+      <p class="note-sm">Notas de 1 a 5 são uma referência do canil, não uma medida científica.</p>
+    </div>
+    <div id="chapters"></div>
+  </section>
+
+  <section id="servicos" class="wrap">
+    <div class="sec-head">
+      <span class="mono">Serviços</span>
+      <h2>Depois de chegar, <em>nós ficamos.</em></h2>
+      <p>Tudo o que o seu cão precisa ao longo da vida, a cargo do mesmo canil. Cada serviço mostra o que inclui e quanto tempo demora. Preços a partir de, conforme a raça, o porte e o estado do pelo.</p>
+    </div>
+    <div class="svc-layout">
+      <div>
+        <div id="svcList"></div>
+        <h3 class="packs-title mono">Pacotes combinados</h3>
+        <div id="packList"></div>
+      </div>
+      <div class="panel sticky" id="agendar">
+        <h3>Agendar serviço</h3>
+        <p class="sub">Escolha o serviço, o dia e a hora. A confirmação final é feita por WhatsApp.</p>
+        <form id="bookForm" novalidate>
+          <label for="bkService">Serviço<select id="bkService" required></select></label>
+          <div class="two">
+            <label for="bkDate">Dia<input id="bkDate" type="date" required></label>
+            <label for="bkTime">Hora<select id="bkTime" required></select></label>
+          </div>
+          <label for="bkOwner">Seu nome<input id="bkOwner" type="text" autocomplete="name" required placeholder="Nome do dono"></label>
+          <div class="two">
+            <label for="bkDog">Nome do cão<input id="bkDog" type="text" required placeholder="Ex.: Rex"></label>
+            <label for="bkBreed">Raça<select id="bkBreed"><option>Boerboel</option><option>Husky Siberiano</option><option>Rottweiler</option><option>Outra raça</option></select></label>
+          </div>
+          <label for="bkPhone">Contacto<input id="bkPhone" type="tel" autocomplete="tel" required placeholder="9XX XXX XXX"></label>
+          <button class="btn btn-primary btn-block" type="submit">Pedir agendamento</button>
+          <p id="bkErr" class="err" role="alert" hidden></p>
+        </form>
+        <div class="confirm" id="bkOk" hidden role="status">
+          <b>Pedido preparado.</b>
+          <pre id="bkSummary"></pre>
+          <a class="btn btn-primary btn-sm" id="bkWa" href="#" target="_blank" rel="noopener">Enviar por WhatsApp</a>
+          <span class="sub" style="margin:0">O pedido só segue depois de enviar a mensagem.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="plano" class="wrap">
+    <div class="sec-head">
+      <h2>Monte o seu plano.</h2>
+      <p>Escolha os serviços e as quantidades. O total é uma estimativa com os preços "a partir de". Enviamos o plano por WhatsApp e confirmamos o valor final.</p>
+    </div>
+    <div class="planner" id="planner">
+      <div id="plItems"></div>
+      <div class="pl-total"><div><span class="mono">Estimativa</span><span class="price" id="plTotal">0 Kz</span></div>
+        <a class="btn btn-primary" id="plWa" href="#" target="_blank" rel="noopener" aria-disabled="true">Pedir este plano por WhatsApp</a></div>
+    </div>
+  </section>
+
+  <section id="visitas" class="wrap">
+    <div class="sec-head">
+      <span class="mono">Visitas</span>
+      <h2>Venha conhecer antes de decidir.</h2>
+      <p>Todas as visitas são marcadas com antecedência, para dar atenção a cada família. Escolha o tipo de visita, o dia e a hora. Confirmamos por WhatsApp e enviamos a morada exata.</p>
+    </div>
+    <div class="svc-layout">
+      <div>
+        <div class="tabs" id="visTabs" role="group" aria-label="Tipo de visita"></div>
+        <div class="visit-info" id="visInfo" aria-live="polite"></div>
+        <h3 class="packs-title mono">Como decorre</h3>
+        <ol class="steps" id="visSteps"></ol>
+        <h3 class="packs-title mono">Regras da visita</h3>
+        <ul class="rules" id="visRules"></ul>
+        <p class="note-sm">Durações, número de pessoas e regras são exemplos. Ajuste-os ao funcionamento real do canil.</p>
+      </div>
+      <div class="panel sticky" id="marcarVisita">
+        <h3>Marcar visita</h3>
+        <p class="sub">Segunda a sábado, das 08h00 às 17h00. Ao domingo não há visitas.</p>
+        <form id="visForm" novalidate>
+          <label for="vsType">Tipo de visita<select id="vsType"></select></label>
+          <div class="two">
+            <label for="vsDate">Dia<input id="vsDate" type="date" required></label>
+            <label for="vsTime">Hora<select id="vsTime" required></select></label>
+          </div>
+          <div class="two">
+            <label for="vsPeople">Pessoas<select id="vsPeople"><option>1</option><option>2</option><option>3</option><option>4</option></select></label>
+            <label for="vsDog">Cão que quer ver<select id="vsDog"></select></label>
+          </div>
+          <label for="vsOwner">Seu nome<input id="vsOwner" type="text" autocomplete="name" required placeholder="Nome"></label>
+          <label for="vsPhone">Contacto<input id="vsPhone" type="tel" autocomplete="tel" required placeholder="9XX XXX XXX"></label>
+          <button class="btn btn-primary btn-block" type="submit">Pedir visita</button>
+          <p id="vsErr" class="err" role="alert" hidden></p>
+        </form>
+        <div class="confirm" id="vsOk" hidden role="status">
+          <b>Pedido preparado.</b>
+          <pre id="vsSummary"></pre>
+          <a class="btn btn-primary btn-sm" id="vsWa" href="#" target="_blank" rel="noopener">Enviar por WhatsApp</a>
+          <span class="sub" style="margin:0">A visita só fica marcada depois da nossa confirmação.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="loja" class="wrap">
+    <div class="sec-head">
+      <span class="mono">Loja</span>
+      <h2>Tudo para cada <em>fase</em> e cada raça.</h2>
+      <p>Ração, pratos, higiene, coleiras, camas, brinquedos e saúde, separados por categoria. Cada produto mostra as variações disponíveis e a raça a que se destina.</p>
+    </div>
+    <span class="filter-lab mono">Categoria</span>
+    <div class="tabs" id="catTabs" role="group" aria-label="Filtrar por categoria"></div>
+    <span class="filter-lab mono">Recomendado para</span>
+    <div class="tabs" id="recTabs" role="group" aria-label="Filtrar por raça"></div>
+    <div class="shop-tools">
+      <label for="shopQ">Pesquisar produto<input id="shopQ" type="search" placeholder="Ex.: coleira" autocomplete="off"></label>
+      <label for="shopSort">Ordenar<select id="shopSort"><option value="">Recomendado</option><option value="asc">Preço, do menor ao maior</option><option value="desc">Preço, do maior ao menor</option><option value="nome">Nome, de A a Z</option></select></label>
+    </div>
+    <p class="shop-count mono" id="shopCount" aria-live="polite"></p>
+    <div id="shopGroups"></div>
+  </section>
+
+  <section id="garantias" class="wrap">
+    <div class="sec-head">
+      <span class="mono">Garantias do Canil EJ</span>
+      <h2>Você leva o cão. Nós <em>ficamos</em> responsáveis.</h2>
+      <p>O que entregamos em cada cão, antes e depois da compra.</p>
+    </div>
+    <div class="guar">
+      <div><span class="mono">Saúde</span><h3>Vacinados e desparasitados</h3><p>Plano de vacinação e desparasitação completo para a idade do cão, com a caderneta atualizada na entrega.</p></div>
+      <div><span class="mono">Veterinário</span><h3>Acompanhamento veterinário</h3><p>Consulta antes da entrega e controlo de saúde nas primeiras semanas do cão em sua casa.</p></div>
+      <div><span class="mono">Linhagem</span><h3>Pedigree</h3><p>Linhagem registada e documentada nos cães que têm pedigree. A ficha de cada cão diz se tem ou não.</p></div>
+      <div><span class="mono">Depois da compra</span><h3>Apoio pós-venda</h3><p>Orientação sobre alimentação, adaptação e primeiros treinos, por WhatsApp, sempre que precisar.</p></div>
+      <div><span class="mono">Entrega</span><h3>Documentos e recibo</h3><p>Recibo da compra, caderneta de vacinas e orientações escritas de cuidados entregues com o cão.</p></div>
+      <div><span class="mono">Visita</span><h3>Conheça antes de decidir</h3><p>Visite as instalações e conheça os cães e a sua rotina, mediante marcação prévia.</p></div>
+    </div>
+  </section>
+  <section id="instagram" class="wrap">
+    <div class="sec-head">
+      <span class="mono">Instagram</span>
+      <h2>Acompanhe o <em>dia a dia</em> do canil.</h2>
+      <p>Ninhadas novas, cães disponíveis, dicas de cuidado e bastidores. Siga o Canil EJ e fale connosco por mensagem direta.</p>
+    </div>
+    <div class="ig-grid">
+      <div><span class="mono">Novidades</span><h3>Ninhadas e cães disponíveis</h3><p>Fotos e vídeos dos filhotes à medida que crescem, com a ficha de cada um.</p></div>
+      <div><span class="mono">Cuidados</span><h3>Dicas para o seu cão</h3><p>Alimentação, banho, treino e saúde, explicados em publicações curtas.</p></div>
+      <div><span class="mono">Bastidores</span><h3>O canil por dentro</h3><p>A rotina, as instalações e a equipa que cuida dos cães todos os dias.</p></div>
+    </div>
+    <div class="ig-cta">
+      <a class="btn btn-primary" href="https://www.instagram.com/canilej.ao/" target="_blank" rel="noopener">Seguir @canilej.ao</a>
+      <span class="tagrow">#CanilEJ #Boerboel #HuskySiberiano #Rottweiler #Luanda</span>
+    </div>
+  </section>
+</main>
+
+<div class="contact bleed" id="contacto">
+  <div class="wrap">
+    <div>
+      <span class="mono" style="color:var(--hero-accent)">Contacto</span>
+      <h2 style="margin-top:14px">Venha conhecer o <em>Canil EJ.</em></h2>
+      <dl class="channels">
+        <div><dt class="mono">Localização</dt><dd>Ilha de Luanda, Luanda, Angola. A morada exata é enviada ao marcar a visita.</dd></div>
+        <div><dt class="mono">WhatsApp</dt><dd id="phoneShow"></dd></div>
+        <div><dt class="mono">Telefone</dt><dd id="phoneShow2"></dd></div>
+        <div><dt class="mono">E-mail</dt><dd>canilej@exemplo.ao</dd></div>
+        <div><dt class="mono">Instagram</dt><dd><a href="https://www.instagram.com/canilej.ao/" target="_blank" rel="noopener">@canilej.ao</a></dd></div>
+        <div><dt class="mono">Horário</dt><dd>Segunda a sábado, 08h00 às 18h00. Visitas mediante marcação.</dd></div>
+      </dl>
+      <p class="note">Contactos, horário, preços, nomes e características dos cães são exemplos. Substitua pelos dados reais do canil antes de divulgar.</p>
+    </div>
+    <div class="panel">
+      <h3>Fale connosco</h3>
+      <p class="sub">Escreva a sua mensagem e envie-a por WhatsApp.</p>
+      <form id="ctForm" novalidate>
+        <label for="ctName">Seu nome<input id="ctName" type="text" autocomplete="name" placeholder="Nome"></label>
+        <label for="ctTopic">Assunto<select id="ctTopic"><option>Quero comprar um cão</option><option>Quero um serviço</option><option>Quero comprar produtos</option><option>Quero marcar uma visita</option><option>Outro assunto</option></select></label>
+        <label for="ctMsg">Mensagem<textarea id="ctMsg" rows="4" placeholder="Conte-nos o que procura"></textarea></label>
+        <a class="btn btn-primary btn-block" id="ctWa" href="#" target="_blank" rel="noopener">Enviar por WhatsApp</a>
+      </form>
+    </div>
+  </div>
+</div>
+<footer class="bleed"><div class="wrap mono"><span>Canil EJ · Ilha de Luanda</span><span>Preços em Kwanzas (Kz)</span></div></footer>
+
+<div class="favbar" id="favBar" hidden role="status"><span id="favTxt"></span><a class="btn btn-primary btn-sm" id="favWa" href="#" target="_blank" rel="noopener">Enviar por WhatsApp</a><button class="linkbtn" id="favClear" type="button">Limpar</button></div>
+
+<a class="wa-fab" id="waFab" href="#" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">WhatsApp</a>
+
+<div class="scrim" id="scrim" hidden></div>
+<aside class="drawer" id="drawer" hidden role="dialog" aria-modal="true" aria-label="Carrinho de compras">
+  <header><h3>Seu carrinho</h3><button class="x-btn" id="closeCart" type="button" aria-label="Fechar carrinho">×</button></header>
+  <div class="lines" id="lines"></div>
+  <div>
+    <div class="total"><span class="mono">Total</span><span class="price" id="cartTotal">0 Kz</span></div>
+    <p class="pay">Pagamento na entrega ou por transferência bancária. A encomenda é confirmada por WhatsApp.</p>
+    <a class="btn btn-primary btn-block" id="checkout" href="#" target="_blank" rel="noopener">Finalizar por WhatsApp</a>
+  </div>
+</aside>
+
+<script>
+(function () {
+  document.documentElement.setAttribute("lang", "pt-AO");
+  var CFG = { wa: "244900000000", phoneLabel: "+244 900 000 000" };
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var kz = function (n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ".") + " Kz"; };
+  var wa = function (text) { return "https://wa.me/" + CFG.wa + "?text=" + encodeURIComponent(text); };
+
+  /* ---------- fotos ----------
+     Cada foto entra aqui como { src: "data:image/jpeg;base64,...", credit: "Foto: Autor, licença, via Wikimedia Commons" }.
+     Chaves das raças: boerboel, husky, rottweiler. Chaves dos cães: bruto, duquesa, gelo, luna, titan, nala, zeus. */
+  var PHOTOS = {};
+  function ph(key, label, ratio) {
+    var p = PHOTOS[key];
+    if (p) return '<figure class="ph" style="--r:' + ratio + '"><img src="' + p.src + '" alt="' + label + '" loading="lazy">' + (p.credit ? "<figcaption>" + p.credit + "</figcaption>" : "") + "</figure>";
+    return '<figure class="ph empty" style="--r:' + ratio + '" data-label="Foto · ' + label + '"></figure>';
+  }
+
+  /* ---------- dados (exemplos) ---------- */
+  var BREEDS = [
+    { id: "Boerboel", key: "boerboel", tag: "O guardião da casa.", intro: "Mastim sul-africano de guarda. Forte, leal e protetor da família e do território. Pede dono firme, socialização desde filhote e espaço para se movimentar.",
+      temp: "Leal, protetor, confiante", porte: "Gigante, 55 a 90 kg", vida: "9 a 11 anos", energia: 3, calor: 3, exp: 5, criancas: "Bom, com socialização e supervisão",
+      heat: "Pelo curto e origem africana ajudam no calor, mas o porte pesa nas articulações: sombra, água fresca, cama ortopédica e passeios nas horas mais frescas." },
+    { id: "Husky Siberiano", key: "husky", tag: "Espírito livre.", intro: "Enérgico, sociável e independente. Precisa de espaço, exercício diário e companhia para ser feliz.",
+      temp: "Brincalhão, sociável, independente", porte: "Médio a grande, até 28 kg", vida: "12 a 14 anos", energia: 5, calor: 1, exp: 3, criancas: "Bom, com supervisão",
+      heat: "Pelagem densa: no calor de Luanda precisa de sombra, tapete refrescante, escovagem regular e passeios cedo ou ao fim do dia." },
+    { id: "Rottweiler", key: "rottweiler", tag: "Força com coração.", intro: "Raça alemã de guarda e de trabalho. Inteligente, confiante e muito apegado à família, é calmo em casa e atento a quem se aproxima. Pede dono firme, treino constante e muita companhia.",
+      temp: "Leal, confiante, obediente", porte: "Grande, 35 a 60 kg", vida: "9 a 10 anos", energia: 4, calor: 2, exp: 4, criancas: "Bom, com socialização e supervisão",
+      heat: "O pelo curto e escuro aquece depressa ao sol. Em Luanda precisa de sombra, água fresca e passeios cedo ou ao fim da tarde, sem esforço nas horas quentes." }
+  ];
+  var DOGS = [
+    { n: "Bruto", b: "Boerboel", s: "Macho", a: "3 meses", p: 450000, ped: true },
+    { n: "Duquesa", b: "Boerboel", s: "Fêmea", a: "4 meses", p: 480000, ped: true },
+    { n: "Gelo", b: "Husky Siberiano", s: "Macho", a: "3 meses", p: 520000, ped: true },
+    { n: "Luna", b: "Husky Siberiano", s: "Fêmea", a: "5 meses", p: 550000, ped: true },
+    { n: "Titan", b: "Rottweiler", s: "Macho", a: "4 meses", p: 420000, ped: true },
+    { n: "Nala", b: "Rottweiler", s: "Fêmea", a: "3 meses", p: 400000, ped: false },
+    { n: "Zeus", b: "Rottweiler", s: "Macho", a: "2 anos", p: 600000, ped: true }
+  ];
+  var SERVICES = [
+    { id: "Banho e tosa", d: "Banho completo e cuidado do pelo, com produtos adequados à raça e ao tipo de pelagem.", p: 8000, dur: "1h30 a 2h30", para: "Todas as raças. No Husky inclui remoção de subpelo.",
+      inc: ["Banho com shampoo adequado ao pelo", "Secagem e escovagem", "Corte de unhas", "Limpeza de ouvidos", "Higiene das patas", "Perfume para cães"] },
+    { id: "Hospedagem", d: "Alojamento seguro enquanto você viaja ou trabalha, com rotina e atenção diária.", p: 12000, dur: "Preço por noite", para: "Cães vacinados e desparasitados, de todas as raças.",
+      inc: ["Alojamento individual com cama", "Refeições com a ração do dono ou do canil", "Dois passeios por dia", "Atualização diária por WhatsApp", "Água fresca sempre disponível", "Medicação, se for necessária"] },
+    { id: "Creche diurna", d: "O seu cão passa o dia a brincar e a socializar, sob supervisão.", p: 6000, dur: "Das 08h00 às 17h00", para: "Cães sociáveis que ficam sozinhos durante o dia.",
+      inc: ["Brincadeira supervisionada", "Socialização em grupos pequenos", "Tempo de descanso", "Água fresca e petisco", "Relatório do dia ao fim da tarde"] },
+    { id: "Adestramento básico", d: "Obediência e convivência para um cão equilibrado dentro e fora de casa.", p: 45000, dur: "Pacote de 4 sessões", para: "Filhotes a partir dos 3 meses e adultos sem treino.",
+      inc: ["Sentar, deitar e ficar", "Chamada e atenção ao dono", "Passeio sem puxar a guia", "Hábitos de higiene em casa", "Orientação ao dono entre sessões"] },
+    { id: "Adestramento avançado e guarda", d: "Treino específico para cães de guarda e proteção, sempre com avaliação prévia.", p: 90000, dur: "Pacote de 8 sessões", para: "Boerboel e Rottweiler com boa socialização.",
+      inc: ["Avaliação prévia do temperamento", "Obediência avançada com distração", "Controlo de impulso", "Treino de guarda com o dono presente", "Acompanhamento após o pacote"] },
+    { id: "Consulta veterinária e vacinação", d: "Saúde em dia desde filhote, com acompanhamento do veterinário do canil.", p: 10000, dur: "Cerca de 30 minutos", para: "Filhotes, adultos e cães seniores.",
+      inc: ["Exame clínico completo", "Plano de vacinação", "Desparasitação", "Caderneta de vacinas atualizada", "Orientação sobre alimentação"] },
+    { id: "Criação e reprodução", d: "Acompanhamento de quem quer criar com segurança e com a saúde da cadela em primeiro lugar.", p: 60000, dur: "Acompanhamento por fases", para: "Donos de cães com pedigree.",
+      inc: ["Avaliação da saúde reprodutiva", "Acompanhamento do cruzamento", "Controlo da gestação e do parto", "Cuidados da ninhada", "Apoio na documentação"] },
+    { id: "Transporte e entrega de cães", d: "Transporte seguro de cães comprados, ou para consultas e hospedagem.", p: 7000, dur: "Dentro de Luanda", para: "Entrega de cães comprados e deslocações com o cão.",
+      inc: ["Caixa de transporte ventilada", "Condutor com experiência", "Aviso de saída e de chegada", "Entrega ao dono com recibo", "Orçamento para fora de Luanda"] }
+  ];
+  var PACKS = [
+    { id: "Pacote Filhote", d: "Tudo o que um filhote precisa nos primeiros dias em casa.", p: 28000, dur: "Primeiros 30 dias", para: "Filhotes recém-chegados.",
+      inc: ["Consulta veterinária inicial", "Plano de vacinas e desparasitação", "Primeiro banho", "Guia de alimentação por fase"] },
+    { id: "Pacote Beleza", d: "Pelo limpo e cuidado durante três meses seguidos.", p: 21000, dur: "3 meses, um banho por mês", para: "Todas as raças.",
+      inc: ["3 banhos com tosa", "Escovagem do pelo", "Corte de unhas", "Limpeza de ouvidos"] },
+    { id: "Pacote Guarda", d: "Preparação completa de um cão de guarda, com o veterinário a acompanhar.", p: 110000, dur: "Cerca de 2 meses", para: "Boerboel e Rottweiler.",
+      inc: ["Avaliação de temperamento", "Adestramento de guarda", "Consulta veterinária de controlo", "Orientação ao dono"] }
+  ];
+  var CATS = ["Alimentação", "Comedouros e bebedouros", "Higiene e banho", "Passeio e segurança", "Conforto", "Brinquedos e treino", "Saúde"];
+  var CATDESC = {
+    "Alimentação": "Ração por fase e por porte, petiscos e suplementos.",
+    "Comedouros e bebedouros": "Pratos e bebedouros adequados ao tamanho e ao modo de comer.",
+    "Higiene e banho": "Shampoo, escovas e cuidados para a pele e o pelo.",
+    "Passeio e segurança": "Coleiras, peitorais, guias e identificação para passeios seguros.",
+    "Conforto": "Camas, tapetes e caixas para descansar e viajar.",
+    "Brinquedos e treino": "Mordedores e brinquedos que gastam energia.",
+    "Saúde": "Antiparasitários e vitaminas."
+  };
+  var ALL = ["Boerboel", "Husky Siberiano", "Rottweiler"];
+  var PRODUCTS = [
+    { id: "r1", c: "Alimentação", n: "Ração filhote raças grandes", d: "Fórmula para o crescimento de ossos e articulações de filhotes de porte grande.", v: "Saco de 15 kg", p: 38000, r: ["Rottweiler", "Husky Siberiano", "Boerboel"], st: true },
+    { id: "r2", c: "Alimentação", n: "Ração adulto raças grandes", d: "Mantém a massa muscular e a energia do cão adulto.", v: "Saco de 15 kg", p: 42000, r: ["Rottweiler", "Husky Siberiano", "Boerboel"], st: true },
+    { id: "r3", c: "Alimentação", n: "Ração Boerboel adulto", d: "Fórmula para raças gigantes, com proteína para massa muscular.", v: "Sacos de 15 kg e 20 kg", p: 48000, r: ["Boerboel"], st: true },
+    { id: "r4", c: "Alimentação", n: "Ração sénior", d: "Menos calorias e apoio às articulações de cães mais velhos.", v: "Saco de 12 kg", p: 40000, r: ALL, st: true },
+    { id: "r5", c: "Alimentação", n: "Petiscos dentais", d: "Ajudam a limpar os dentes e reduzem o tártaro.", v: "Pack de 10 unidades", p: 6500, r: ALL, st: true },
+    { id: "r6", c: "Alimentação", n: "Suplemento para articulações", d: "Glucosamina e condroitina para raças pesadas.", v: "Frasco de 60 comprimidos mastigáveis", p: 18000, r: ["Rottweiler", "Boerboel"], st: true },
+    { id: "c1", c: "Comedouros e bebedouros", n: "Prato inox antiderrapante", d: "Aço inoxidável com base de borracha, fácil de lavar.", v: "Tamanhos S, M e L", p: 4500, r: ALL, st: true },
+    { id: "c2", c: "Comedouros e bebedouros", n: "Prato de alimentação lenta", d: "Relevos que abrandam a refeição. Útil para cães grandes que comem depressa.", v: "Tamanhos M e L", p: 9500, r: ["Boerboel", "Rottweiler"], st: true },
+    { id: "c3", c: "Comedouros e bebedouros", n: "Bebedouro automático", d: "Mantém a água fresca e limpa durante o dia.", v: "Capacidade de 2 L e 4 L", p: 15000, r: ALL, st: true },
+    { id: "h1", c: "Higiene e banho", n: "Shampoo hipoalergénico", d: "Fórmula suave para peles sensíveis.", v: "Frascos de 500 ml e 1 L", p: 7500, r: ALL, st: true },
+    { id: "h2", c: "Higiene e banho", n: "Shampoo para pelo duplo", d: "Ajuda a controlar a queda de pelo e a manter a pelagem leve.", v: "Frasco de 500 ml", p: 8500, r: ["Husky Siberiano"], st: true },
+    { id: "h3", c: "Higiene e banho", n: "Escova desembaraçadora", d: "Remove o subpelo morto sem ferir a pele.", v: "Tamanho único, cabo antiderrapante", p: 6000, r: ["Husky Siberiano"], st: true },
+    { id: "h4", c: "Higiene e banho", n: "Luva de escovagem pelo curto", d: "Remove o pelo solto e dá brilho à pelagem.", v: "Tamanho único", p: 4000, r: ["Boerboel", "Rottweiler"], st: true },
+    { id: "h5", c: "Higiene e banho", n: "Cortador de unhas", d: "Lâmina de aço com trava de segurança.", v: "Tamanhos M e L", p: 4500, r: ALL, st: true },
+    { id: "p1", c: "Passeio e segurança", n: "Coleira reforçada", d: "Nylon grosso com fivela metálica, para cães fortes.", v: "Tamanhos L e XL. Cores preto e azul-marinho", p: 12000, r: ["Rottweiler", "Boerboel"], st: true },
+    { id: "p2", c: "Passeio e segurança", n: "Peitoral antipuxão", d: "Distribui a força do puxão e protege o pescoço.", v: "Tamanhos M, L e XL", p: 16000, r: ["Husky Siberiano", "Boerboel"], st: true },
+    { id: "p3", c: "Passeio e segurança", n: "Guia resistente", d: "Com pega acolchoada e mosquetão de aço.", v: "Comprimentos de 1,5 m e 3 m", p: 8000, r: ALL, st: true },
+    { id: "p4", c: "Passeio e segurança", n: "Açaime ajustável", d: "Ventilado, permite ao cão ofegar e beber.", v: "Tamanhos L e XL", p: 9000, r: ["Rottweiler"], st: false },
+    { id: "p5", c: "Passeio e segurança", n: "Placa de identificação gravada", d: "Gravada com o nome do cão e o contacto do dono.", v: "Aço inoxidável, formato osso", p: 3500, r: ALL, st: true },
+    { id: "k1", c: "Conforto", n: "Cama ortopédica", d: "Espuma de memória para aliviar as articulações.", v: "Tamanhos L e XL", p: 35000, r: ["Rottweiler", "Boerboel"], st: true },
+    { id: "k2", c: "Conforto", n: "Tapete refrescante", d: "Gel que alivia o calor, sem eletricidade.", v: "Tamanhos M, L e XL", p: 14000, r: ALL, st: true },
+    { id: "k3", c: "Conforto", n: "Caixa de transporte", d: "Ventilada, com porta de segurança.", v: "Tamanhos L e XL", p: 40000, r: ALL, st: true },
+    { id: "b1", c: "Brinquedos e treino", n: "Mordedor extra resistente", d: "Borracha maciça para mordida forte.", v: "Tamanhos M e L", p: 5500, r: ["Rottweiler"], st: true },
+    { id: "b2", c: "Brinquedos e treino", n: "Brinquedo interativo de petiscos", d: "Estimula a mente de cães muito ativos.", v: "Tamanho único", p: 9000, r: ["Husky Siberiano"], st: true },
+    { id: "s1", c: "Saúde", n: "Antiparasitário em comprimido", d: "Contra pulgas, carraças e vermes. Usar conforme o peso e a orientação veterinária.", v: "Dose escolhida conforme o peso do cão", p: 11000, r: ALL, st: true },
+    { id: "s2", c: "Saúde", n: "Multivitamínico para cães", d: "Apoio ao pelo, à pele e à imunidade.", v: "Frasco de 90 comprimidos", p: 9500, r: ALL, st: true }
+  ];
+
+  var st = { cat: "Todas", rec: "Todas", cart: {} };
+  try { var saved = JSON.parse(localStorage.getItem("canilej-cart") || "{}"); if (saved && typeof saved === "object") st.cart = saved; } catch (e) {}
+  var saveCart = function () { try { localStorage.setItem("canilej-cart", JSON.stringify(st.cart)); } catch (e) {} };
+
+  /* ---------- portais das raças ---------- */
+  var arrow = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>';
+  $("#portals").innerHTML = BREEDS.map(function (b) {
+    return '<a class="portal" href="#' + b.key + '">' + ph(b.key, b.id, "3 / 4") + '<span class="go">' + arrow + '</span><div class="cap"><h2>' + b.id + '</h2><p>' + b.tag + '</p></div></a>';
+  }).join("");
+
+  /* ---------- capítulos das raças ---------- */
+  $("#chapters").innerHTML = BREEDS.map(function (b) {
+    var dogs = DOGS.filter(function (d) { return d.b === b.id; });
+    var energy = [1, 2, 3, 4, 5].map(function (i) { return '<i class="' + (i <= b.energia ? "on" : "") + '" style="--i:' + i + '"></i>'; }).join("");
+    return '<article class="chapter" id="' + b.key + '"><div class="chapter-head"><h3>' + b.id + '</h3><p class="tagline">' + b.tag + '</p></div>' +
+      '<div class="chapter-body">' + ph(b.key, b.id, "4 / 5") +
+      '<div><p class="intro">' + b.intro + '</p><dl class="specs">' +
+      '<div><dt class="mono">Temperamento</dt><dd>' + b.temp + '</dd></div><div><dt class="mono">Porte</dt><dd>' + b.porte + '</dd></div>' +
+      '<div><dt class="mono">Esperança de vida</dt><dd>' + b.vida + '</dd></div><div><dt class="mono">Com crianças</dt><dd>' + b.criancas + '</dd></div>' +
+      '<div><dt class="mono">Energia</dt><dd><span class="energy" role="img" aria-label="' + b.energia + ' de 5">' + energy + '</span></dd></div></dl>' +
+      '<p class="climate"><span class="mono">No clima de Luanda</span>' + b.heat + '</p></div></div>' +
+      '<div class="dogs-head mono">Disponíveis</div>' +
+      dogs.map(function (d) {
+        var msg = "Olá, Canil EJ! Tenho interesse no " + d.b + " " + d.n + " (" + d.s + ", " + d.a + ", " + kz(d.p) + ").";
+        return '<div class="dog">' + ph(d.n.toLowerCase(), d.n, "1 / 1") + '<div><h4>' + d.n + '</h4><p class="meta">' + d.s + ' · ' + d.a + '</p><div class="tags"><span>Vacinado</span><span>Desparasitado</span><span>' + (d.ped ? "Com pedigree" : "Sem pedigree") + '</span></div><div class="dact"><button class="linkbtn" type="button" data-vdog="' + d.n + '">Marcar visita com este cão</button><button class="fav" type="button" data-fav="' + d.n + '" aria-pressed="false" aria-label="Guardar ' + d.n + ' nos favoritos"><span aria-hidden="true">♡</span> Guardar</button></div></div>' +
+          '<div class="price"><small>Preço</small>' + kz(d.p) + '</div><a class="btn btn-primary btn-sm" target="_blank" rel="noopener" href="' + wa(msg) + '">Tenho interesse</a></div>';
+      }).join("") + '</article>';
+  }).join("");
+
+  /* ---------- serviços ---------- */
+  function svcHTML(arr, pack) {
+    return arr.map(function (s) {
+      return '<details class="svc' + (pack ? " pack" : "") + '"><summary><span class="sn">' + s.id + '</span><span class="sd">' + s.dur + '</span><span class="price"><small>a partir de</small>' + kz(s.p) + '</span><span class="plus" aria-hidden="true"></span></summary>' +
+        '<div class="svc-body"><p class="svc-d">' + s.d + '</p><p class="svc-for"><b>Indicado para:</b> ' + s.para + '</p><ul>' + s.inc.map(function (i) { return "<li>" + i + "</li>"; }).join("") + '</ul>' +
+        '<button class="btn btn-line btn-sm" type="button" data-svc="' + s.id + '">Agendar este ' + (pack ? "pacote" : "serviço") + '</button></div></details>';
+    }).join("");
+  }
+  var SVC_GROUPS = [
+    ["Cuidado e saúde", "Banho, higiene e veterinário.", ["Banho e tosa", "Consulta veterinária e vacinação"]],
+    ["Estadia", "Para os dias em que você não pode estar.", ["Hospedagem", "Creche diurna"]],
+    ["Treino", "Obediência e guarda, sempre com avaliação prévia.", ["Adestramento básico", "Adestramento avançado e guarda"]],
+    ["Criação e transporte", "Reprodução acompanhada e entrega segura.", ["Criação e reprodução", "Transporte e entrega de cães"]]
+  ];
+  $("#svcList").innerHTML = SVC_GROUPS.map(function (g) {
+    var items = SERVICES.filter(function (x) { return g[2].indexOf(x.id) > -1; });
+    return '<div class="svc-group"><div class="sg-head"><h3>' + g[0] + '</h3><p>' + g[1] + '</p></div>' + svcHTML(items, false) + '</div>';
+  }).join("");
+  $("#packList").innerHTML = svcHTML(PACKS, true);
+  $("#bkService").innerHTML = '<optgroup label="Serviços">' + SERVICES.map(function (s) { return "<option>" + s.id + "</option>"; }).join("") + '</optgroup><optgroup label="Pacotes">' + PACKS.map(function (s) { return "<option>" + s.id + "</option>"; }).join("") + "</optgroup>";
+  var times = []; for (var h = 8; h <= 17; h++) { times.push((h < 10 ? "0" : "") + h + ":00"); if (h < 17) times.push((h < 10 ? "0" : "") + h + ":30"); }
+  $("#bkTime").innerHTML = times.map(function (t) { return "<option>" + t + "</option>"; }).join("");
+  var today = new Date(); var iso = today.getFullYear() + "-" + ("0" + (today.getMonth() + 1)).slice(-2) + "-" + ("0" + today.getDate()).slice(-2);
+  $("#bkDate").min = iso; $("#bkDate").value = iso;
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-svc]"); if (!b) return;
+    $("#bkService").value = b.getAttribute("data-svc");
+    $("#agendar").scrollIntoView({ behavior: "smooth", block: "center" });
+    $("#bkOwner").focus({ preventScroll: true });
+  });
+  function flag(ids) {
+    var first = null;
+    ids.forEach(function (id) { var el = $("#" + id), bad = !el.value.trim(); el.setAttribute("aria-invalid", bad ? "true" : "false"); if (bad && !first) first = el; });
+    if (first) first.focus();
+  }
+  document.addEventListener("input", function (e) { if (e.target.getAttribute && e.target.getAttribute("aria-invalid") === "true" && e.target.value.trim()) e.target.setAttribute("aria-invalid", "false"); });
+  $("#bookForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var v = function (id) { return $("#" + id).value.trim(); };
+    var err = $("#bkErr"), miss = [];
+    if (!v("bkDate")) miss.push("o dia"); if (!v("bkOwner")) miss.push("o seu nome"); if (!v("bkDog")) miss.push("o nome do cão"); if (!v("bkPhone")) miss.push("o contacto");
+    if (miss.length) { flag(["bkDate", "bkOwner", "bkDog", "bkPhone"]); err.textContent = "Falta preencher: " + miss.join(", ") + "."; err.hidden = false; $("#bkOk").hidden = true; return; }
+    err.hidden = true; ["bkDate", "bkOwner", "bkDog", "bkPhone"].forEach(function (id) { $("#" + id).setAttribute("aria-invalid", "false"); });
+    var parts = v("bkDate").split("-"), when = parts[2] + "/" + parts[1] + "/" + parts[0] + " às " + v("bkTime");
+    var body = "Serviço: " + v("bkService") + "\nQuando: " + when + "\nDono: " + v("bkOwner") + "\nCão: " + v("bkDog") + " (" + v("bkBreed") + ")\nContacto: " + v("bkPhone");
+    $("#bkSummary").textContent = body;
+    $("#bkWa").href = wa("Olá, Canil EJ! Quero agendar:\n" + body); $("#bkOk").hidden = false;
+  });
+
+  /* ---------- loja ---------- */
+  function tabsHTML(list, cur) {
+    return list.map(function (v) { return '<button class="tab" type="button" data-v="' + v + '" aria-pressed="' + (v === cur) + '">' + v + "</button>"; }).join("");
+  }
+  function card(p) {
+    var rec = p.r.length === ALL.length ? "Todas as raças" : p.r.join(", ");
+    return '<article class="prow"><div class="pn"><h4>' + p.n + '</h4><p>' + p.d + '</p></div><div class="pv"><span><b>Variações</b>' + p.v + '</span><span><b>Recomendado para</b>' + rec + '</span></div><div class="pp price">' + kz(p.p) + '</div><div class="pa">' +
+      (p.st ? '<button class="btn btn-line btn-sm" type="button" data-add="' + p.id + '">Adicionar</button>' : '<span class="mono" style="color:var(--muted)">Sem stock</span>') + '</div></article>';
+  }
+  function renderShop() {
+    $("#catTabs").innerHTML = tabsHTML(["Todas"].concat(CATS), st.cat);
+    $("#recTabs").innerHTML = tabsHTML(["Todas"].concat(ALL), st.rec);
+    var q = ($("#shopQ").value || "").trim().toLowerCase(), so = $("#shopSort").value;
+    var list = PRODUCTS.filter(function (p) { return (st.cat === "Todas" || p.c === st.cat) && (st.rec === "Todas" || p.r.indexOf(st.rec) > -1) && (!q || (p.n + " " + p.d).toLowerCase().indexOf(q) > -1); });
+    if (so) list = list.slice().sort(function (a, b) { return so === "asc" ? a.p - b.p : so === "desc" ? b.p - a.p : a.n.localeCompare(b.n, "pt"); });
+    $("#shopCount").textContent = list.length + (list.length === 1 ? " produto" : " produtos");
+    var html = CATS.map(function (c) {
+      var items = list.filter(function (p) { return p.c === c; });
+      return items.length ? '<div class="group"><div class="group-head"><h3>' + c + '</h3><p>' + CATDESC[c] + '</p></div><div class="rows">' + items.map(card).join("") + "</div></div>" : "";
+    }).join("");
+    $("#shopGroups").innerHTML = html || '<div class="empty-note" style="margin-top:24px">Nenhum produto com estes filtros. Experimente outra categoria ou raça.</div>';
+  }
+  $("#catTabs").addEventListener("click", function (e) { var c = e.target.closest("[data-v]"); if (c) { st.cat = c.getAttribute("data-v"); renderShop(); } });
+  $("#recTabs").addEventListener("click", function (e) { var c = e.target.closest("[data-v]"); if (c) { st.rec = c.getAttribute("data-v"); renderShop(); } });
+  $("#shopGroups").addEventListener("click", function (e) {
+    var b = e.target.closest("[data-add]"); if (!b) return;
+    var id = b.getAttribute("data-add"); st.cart[id] = (st.cart[id] || 0) + 1; saveCart(); renderCart();
+    b.textContent = "Adicionado ✓"; var cb = $("#openCart"); cb.classList.remove("bump"); void cb.offsetWidth; cb.classList.add("bump"); setTimeout(function () { b.textContent = "Adicionar"; }, 1200);
+  });
+
+  /* ---------- carrinho ---------- */
+  function prod(id) { return PRODUCTS.filter(function (p) { return p.id === id; })[0]; }
+  function renderCart() {
+    var ids = Object.keys(st.cart).filter(function (id) { return prod(id) && st.cart[id] > 0; });
+    var count = 0, total = 0, lines = [];
+    ids.forEach(function (id) { var p = prod(id), q = st.cart[id]; count += q; total += p.p * q; lines.push("- " + q + "x " + p.n + " (" + kz(p.p * q) + ")"); });
+    $("#cartN").textContent = count; $("#cartTotal").textContent = kz(total);
+    $("#lines").innerHTML = ids.length ? ids.map(function (id) {
+      var p = prod(id), q = st.cart[id];
+      return '<div class="line"><b>' + p.n + '</b><span class="price" style="font-size:1rem">' + kz(p.p * q) + '</span><span class="qty"><button type="button" data-dec="' + id + '" aria-label="Diminuir">−</button><span>' + q + '</span><button type="button" data-inc="' + id + '" aria-label="Aumentar">+</button></span><button type="button" class="linkbtn" data-del="' + id + '">Remover</button></div>';
+    }).join("") : '<div class="empty-note">O carrinho está vazio. Adicione produtos da loja.</div>';
+    var co = $("#checkout");
+    if (ids.length) { co.href = wa("Olá, Canil EJ! Quero encomendar:\n" + lines.join("\n") + "\nTotal: " + kz(total) + "\nPagamento: na entrega ou transferência."); co.style.opacity = ""; co.style.pointerEvents = ""; }
+    else { co.href = "#"; co.style.opacity = ".45"; co.style.pointerEvents = "none"; }
+  }
+  $("#lines").addEventListener("click", function (e) {
+    var t = e.target.closest("button"); if (!t) return;
+    var inc = t.getAttribute("data-inc"), dec = t.getAttribute("data-dec"), del = t.getAttribute("data-del");
+    if (inc) st.cart[inc]++; if (dec) st.cart[dec] = Math.max(0, st.cart[dec] - 1); if (del) delete st.cart[del];
+    saveCart(); renderCart();
+  });
+  function toggleCart(open) {
+    ["main", "header.top", "footer", ".contact", ".wa-fab", ".favbar"].forEach(function (sel) { var e = document.querySelector(sel); if (e) { if (open) e.setAttribute("inert", ""); else e.removeAttribute("inert"); } });
+    $("#drawer").hidden = !open; $("#scrim").hidden = !open;
+    if (open) $("#closeCart").focus(); else $("#openCart").focus();
+  }
+  $("#openCart").addEventListener("click", function () { toggleCart(true); });
+  $("#closeCart").addEventListener("click", function () { toggleCart(false); });
+  $("#scrim").addEventListener("click", function () { toggleCart(false); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !$("#drawer").hidden) toggleCart(false); });
+
+  /* ---------- contacto ---------- */
+  $("#phoneShow").textContent = CFG.phoneLabel;
+  $("#phoneShow2").textContent = CFG.phoneLabel;
+  function updContact() {
+    var n = $("#ctName").value.trim(), m = $("#ctMsg").value.trim();
+    $("#ctWa").href = wa("Olá, Canil EJ!" + (n ? " Sou " + n + "." : "") + "\nAssunto: " + $("#ctTopic").value + (m ? "\n" + m : ""));
+  }
+  ["ctName", "ctTopic", "ctMsg"].forEach(function (id) { $("#" + id).addEventListener("input", updContact); });
+  $("#ctForm").addEventListener("submit", function (e) { e.preventDefault(); });
+  updContact();
+  $("#waFab").href = wa("Olá, Canil EJ! Gostava de mais informações.");
+
+
+  /* ---------- visitas ---------- */
+  var VISITS = [
+    { id: "Conhecer o canil", dur: "45 minutos", quem: "Até 4 pessoas",
+      ve: ["Instalações e áreas de descanso", "Cães adultos e matrizes", "Rotina de alimentação e higiene", "Conversa com a equipa sobre as raças"],
+      traz: ["Documento de identificação", "Calçado fechado", "Dúvidas escritas, se quiser"] },
+    { id: "Conhecer um cão", dur: "30 minutos", quem: "Até 4 pessoas, toda a família que vai conviver com ele",
+      ve: ["O cão escolhido, a sós e em convívio", "Caderneta de vacinas e pedigree, quando tem", "Peso, alimentação e rotina atual", "Perguntas ao veterinário do canil, por WhatsApp, depois da visita"],
+      traz: ["O nome do cão que escolheu na lista", "Calçado fechado"] },
+    { id: "Entrega ou recolha", dur: "20 minutos", quem: "1 a 2 pessoas",
+      ve: ["Entrega do cão com recibo e caderneta", "Orientações escritas de cuidados", "Pagamento e documentos", "Recolha de cão da hospedagem ou do banho"],
+      traz: ["Comprovativo de pagamento", "Coleira e guia", "Caixa de transporte, se o carro for pequeno"] }
+  ];
+  var VSTEPS = [
+    ["Marque", "Escolha o tipo, o dia e a hora no formulário. Abre-se uma mensagem de WhatsApp já escrita."],
+    ["Confirmação", "Respondemos no mesmo dia útil, com a confirmação e a morada exata na Ilha de Luanda."],
+    ["Chegada", "Recebemos à porta. Pedimos que desinfete o calçado antes de entrar nas áreas dos cães."],
+    ["Visita", "Acompanhada pela equipa, com tempo para todas as perguntas."],
+    ["Depois", "Se decidir, reserva o cão e combina a entrega. Sem pressão."]
+  ];
+  var VRULES = ["Marcação prévia obrigatória, de segunda a sábado.", "Não há visitas ao domingo.", "Crianças só com os pais e sem correr nas áreas dos cães.", "Não traga o seu cão na primeira visita, para proteger a saúde dos filhotes.", "Não toque nem dê comida aos cães sem autorização da equipa.", "Com mais de 15 minutos de atraso, reagendamos a visita."];
+  var curVisit = 0;
+  function renderVisit() {
+    var v = VISITS[curVisit];
+    $("#visTabs").innerHTML = VISITS.map(function (x, i) { return '<button class="tab" type="button" data-vi="' + i + '" aria-pressed="' + (i === curVisit) + '">' + x.id + "</button>"; }).join("");
+    var li = function (a) { return a.map(function (t) { return "<li>" + t + "</li>"; }).join(""); };
+    $("#visInfo").innerHTML = '<dl class="vmeta"><div><dt class="mono">Duração</dt><dd>' + v.dur + '</dd></div><div><dt class="mono">Quem pode ir</dt><dd>' + v.quem + '</dd></div></dl>' +
+      '<div class="vcols"><div><h3>O que vai ver</h3><ul>' + li(v.ve) + '</ul></div><div><h3>O que trazer</h3><ul>' + li(v.traz) + '</ul></div></div>';
+    $("#vsType").value = v.id;
+  }
+  $("#vsType").innerHTML = VISITS.map(function (x) { return "<option>" + x.id + "</option>"; }).join("");
+  $("#visSteps").innerHTML = VSTEPS.map(function (x) { return "<li><b>" + x[0] + "</b><span>" + x[1] + "</span></li>"; }).join("");
+  $("#visRules").innerHTML = VRULES.map(function (x) { return "<li>" + x + "</li>"; }).join("");
+  $("#vsDog").innerHTML = '<option value="">Ainda não decidi</option>' + DOGS.map(function (d) { return "<option>" + d.n + " (" + d.b + ")</option>"; }).join("");
+  var vt = []; for (var hh = 8; hh <= 16; hh++) { vt.push((hh < 10 ? "0" : "") + hh + ":00"); vt.push((hh < 10 ? "0" : "") + hh + ":30"); } vt.push("17:00");
+  $("#vsTime").innerHTML = vt.map(function (t) { return "<option>" + t + "</option>"; }).join("");
+  $("#vsDate").min = iso;
+  (function () { var d = new Date(); do { d.setDate(d.getDate() + 1); } while (d.getDay() === 0); $("#vsDate").value = d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2); })();
+  $("#visTabs").addEventListener("click", function (e) { var b = e.target.closest("[data-vi]"); if (b) { curVisit = +b.getAttribute("data-vi"); renderVisit(); } });
+  $("#vsType").addEventListener("change", function () { curVisit = Math.max(0, VISITS.map(function (x) { return x.id; }).indexOf($("#vsType").value)); renderVisit(); });
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-vdog]"); if (!b) return;
+    curVisit = 1; renderVisit();
+    var nm = b.getAttribute("data-vdog");
+    Array.prototype.forEach.call($("#vsDog").options, function (o) { if (o.text.indexOf(nm + " (") === 0) $("#vsDog").value = o.value || o.text; });
+    $("#marcarVisita").scrollIntoView({ behavior: "smooth", block: "center" });
+  });
+  $("#visForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var v = function (id) { return $("#" + id).value.trim(); };
+    var err = $("#vsErr"), miss = [];
+    if (!v("vsDate")) miss.push("o dia"); if (!v("vsOwner")) miss.push("o seu nome"); if (!v("vsPhone")) miss.push("o contacto");
+    if (miss.length) { flag(["vsDate", "vsOwner", "vsPhone"]); err.textContent = "Falta preencher: " + miss.join(", ") + "."; err.hidden = false; $("#vsOk").hidden = true; return; }
+    var p = v("vsDate").split("-"), dt = new Date(+p[0], +p[1] - 1, +p[2]);
+    if (dt.getDay() === 0) { $("#vsDate").setAttribute("aria-invalid", "true"); $("#vsDate").focus(); err.textContent = "Ao domingo não há visitas. Escolha de segunda a sábado."; err.hidden = false; $("#vsOk").hidden = true; return; }
+    err.hidden = true; ["vsDate", "vsOwner", "vsPhone"].forEach(function (id) { $("#" + id).setAttribute("aria-invalid", "false"); });
+    var body = "Visita: " + v("vsType") + "\nQuando: " + p[2] + "/" + p[1] + "/" + p[0] + " às " + v("vsTime") + "\nPessoas: " + v("vsPeople") + "\nCão: " + (v("vsDog") || "ainda não decidi") + "\nNome: " + v("vsOwner") + "\nContacto: " + v("vsPhone");
+    $("#vsSummary").textContent = body; $("#vsWa").href = wa("Olá, Canil EJ! Quero marcar uma visita:\n" + body); $("#vsOk").hidden = false;
+  });
+  renderVisit();
+
+  /* ---------- seletor de raça ---------- */
+  var SC = {
+    obj: { guarda: { Boerboel: 3, Rottweiler: 3, "Husky Siberiano": 0 }, familia: { Boerboel: 1, Rottweiler: 2, "Husky Siberiano": 2 }, atividade: { Boerboel: 1, Rottweiler: 2, "Husky Siberiano": 3 } },
+    esp: { grande: { Boerboel: 2, Rottweiler: 1, "Husky Siberiano": 2 }, pequeno: { Boerboel: 0, Rottweiler: 2, "Husky Siberiano": 1 }, sem: { Boerboel: 0, Rottweiler: 1, "Husky Siberiano": 0 } },
+    exp: { primeiro: { Boerboel: 0, Rottweiler: 1, "Husky Siberiano": 1 }, grandes: { Boerboel: 2, Rottweiler: 2, "Husky Siberiano": 1 } }
+  };
+  var WHY = {
+    Boerboel: "Guarda firme e presença imponente. Pede quintal, socialização cedo e um dono com experiência.",
+    Rottweiler: "Guardião calmo em casa e fácil de treinar, muito apegado à família. Precisa de treino constante e de companhia.",
+    "Husky Siberiano": "Sociável e cheio de energia, ótimo para quem gosta de atividade. É amigo de toda a gente, por isso não serve para guarda, e precisa de cerca alta e exercício diário."
+  };
+  var fa = {};
+  $("#finder").addEventListener("click", function (e) {
+    var b = e.target.closest(".chip"); if (!b) return;
+    var q = b.closest("[data-q]").getAttribute("data-q"); fa[q] = b.getAttribute("data-v");
+    Array.prototype.forEach.call(b.parentNode.children, function (c) { c.setAttribute("aria-pressed", c === b ? "true" : "false"); });
+    if (!(fa.obj && fa.esp && fa.exp)) return;
+    var best = null, top = -1;
+    BREEDS.forEach(function (br) { var t = SC.obj[fa.obj][br.id] + SC.esp[fa.esp][br.id] + SC.exp[fa.exp][br.id]; if (t > top) { top = t; best = br; } });
+    $("#fRes").innerHTML = "<b>" + best.id + "</b> " + WHY[best.id] + (fa.esp === "sem" ? " Sem quintal, qualquer uma destas raças precisa de passeios longos todos os dias. Fale connosco antes de decidir." : "") + ' <a href="#' + best.key + '">Ver ficha e cães disponíveis</a>';
+  });
+
+  /* ---------- movimento ---------- */
+  var calm = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!calm && "IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (es) { es.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } }); }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+    Array.prototype.forEach.call(document.querySelectorAll(".sec-head, .finder, .chapter, .svc-group, .guar > div, .ig-grid > div, .steps li, .visit-info, .contact .wrap > *"), function (el, i) {
+      el.classList.add("rv"); el.style.setProperty("--d", (i % 4) * 70 + "ms"); io.observe(el);
+    });
+  }
+  var progress = $("#progress"), bigej = $(".bigej"), tick = false;
+  function onScroll() {
+    tick = false;
+    var h = document.documentElement, max = h.scrollHeight - h.clientHeight;
+    progress.style.transform = "scaleX(" + (max > 0 ? Math.min(1, h.scrollTop / max) : 0) + ")";
+    if (!calm && h.scrollTop < 1000) bigej.style.transform = "translate3d(0," + Math.round(h.scrollTop * 0.14) + "px,0)";
+  }
+  window.addEventListener("scroll", function () { if (!tick) { tick = true; requestAnimationFrame(onScroll); } }, { passive: true });
+  onScroll();
+  if ("IntersectionObserver" in window) {
+    var links = {}; Array.prototype.forEach.call(document.querySelectorAll(".nav a"), function (a) { links[a.getAttribute("href").slice(1)] = a; });
+    var so = new IntersectionObserver(function (es) {
+      es.forEach(function (en) { if (en.isIntersecting) { Object.keys(links).forEach(function (k) { links[k].removeAttribute("aria-current"); }); if (links[en.target.id]) links[en.target.id].setAttribute("aria-current", "true"); } });
+    }, { rootMargin: "-40% 0px -55% 0px" });
+    Object.keys(links).forEach(function (k) { var el = document.getElementById(k); if (el) so.observe(el); });
+  }
+
+  /* ---------- tema claro e escuro ---------- */
+  var themeBtn = $("#themeBtn"), root = document.documentElement;
+  function curTheme() { return root.getAttribute("data-theme") || (window.matchMedia && matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark"); }
+  function setTheme(t, keep) {
+    root.setAttribute("data-theme", t); themeBtn.setAttribute("aria-pressed", t === "light" ? "true" : "false");
+    themeBtn.setAttribute("aria-label", t === "light" ? "Mudar para tema escuro" : "Mudar para tema claro");
+    if (keep) { try { localStorage.setItem("canilej-theme", t); } catch (e) {} }
+  }
+  var savedTheme = null; try { savedTheme = localStorage.getItem("canilej-theme"); } catch (e) {}
+  setTheme(savedTheme === "light" || savedTheme === "dark" ? savedTheme : curTheme(), false);
+  themeBtn.addEventListener("click", function () { setTheme(curTheme() === "light" ? "dark" : "light", true); });
+
+  /* ---------- comparador de raças ---------- */
+  var cmpOpts = BREEDS.map(function (b) { return "<option>" + b.id + "</option>"; }).join("");
+  $("#cmpA").innerHTML = cmpOpts; $("#cmpB").innerHTML = cmpOpts; $("#cmpA").value = "Boerboel"; $("#cmpB").value = "Rottweiler";
+  function bar(n) { return '<span class="cbar" role="img" aria-label="' + n + ' de 5"><i style="width:' + n * 20 + '%"></i></span>'; }
+  function renderCmp() {
+    var A = BREEDS.filter(function (b) { return b.id === $("#cmpA").value; })[0], B = BREEDS.filter(function (b) { return b.id === $("#cmpB").value; })[0];
+    var rows = [["Porte", A.porte, B.porte], ["Esperança de vida", A.vida, B.vida], ["Temperamento", A.temp, B.temp], ["Com crianças", A.criancas, B.criancas],
+      ["Energia", bar(A.energia), bar(B.energia)], ["Tolerância ao calor", bar(A.calor), bar(B.calor)], ["Exige dono experiente", bar(A.exp), bar(B.exp)]];
+    $("#cmpOut").innerHTML = '<div class="cmp-grid"><div class="cmp-h"></div><div class="cmp-h">' + A.id + '</div><div class="cmp-h">' + B.id + "</div>" +
+      rows.map(function (r) { return '<div class="cmp-l">' + r[0] + "</div><div>" + r[1] + "</div><div>" + r[2] + "</div>"; }).join("") + "</div>";
+  }
+  $("#cmpA").addEventListener("change", renderCmp); $("#cmpB").addEventListener("change", renderCmp); renderCmp();
+
+  /* ---------- plano de serviços ---------- */
+  var PL = SERVICES.concat(PACKS), plQty = {}, UNIT = { "Hospedagem": "noites", "Creche diurna": "dias" };
+  $("#plItems").innerHTML = PL.map(function (x, i) {
+    return '<div class="pl-row"><div class="pl-n"><b>' + x.id + '</b><span>' + x.dur + '</span></div><div class="price pl-p">' + kz(x.p) + (UNIT[x.id] ? "<small>por " + UNIT[x.id].replace(/s$/, "") + "</small>" : "<small>a partir de</small>") + '</div>' +
+      '<div class="qty" role="group" aria-label="Quantidade de ' + x.id + '"><button type="button" data-pm="-1" data-i="' + i + '" aria-label="Menos ' + x.id + '">−</button><span id="plq' + i + '" aria-live="polite">0</span><button type="button" data-pm="1" data-i="' + i + '" aria-label="Mais ' + x.id + '">+</button></div></div>';
+  }).join("");
+  var plShown = 0, plAnim = null;
+  function countTo(el, to) {
+    if (calm0()) { el.textContent = kz(to); plShown = to; return; }
+    var from = plShown, t0 = null; if (plAnim) cancelAnimationFrame(plAnim);
+    (function step(ts) { if (t0 === null) t0 = ts; var k = Math.min(1, (ts - t0) / 450), e = 1 - Math.pow(1 - k, 3); plShown = Math.round(from + (to - from) * e); el.textContent = kz(plShown); if (k < 1) plAnim = requestAnimationFrame(step); })(performance.now());
+  }
+  function calm0() { return window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches; }
+  function renderPlan() {
+    var total = 0, lines = [];
+    PL.forEach(function (x, i) { var q = plQty[i] || 0; $("#plq" + i).textContent = q; if (q) { total += x.p * q; lines.push("- " + x.id + ": " + q + (UNIT[x.id] ? " " + UNIT[x.id] : "x") + " (" + kz(x.p * q) + ")"); } });
+    countTo($("#plTotal"), total);
+    var a = $("#plWa");
+    if (total) { a.href = wa("Olá, Canil EJ! Quero este plano:\n" + lines.join("\n") + "\nEstimativa: " + kz(total)); a.setAttribute("aria-disabled", "false"); a.style.opacity = ""; a.style.pointerEvents = ""; }
+    else { a.href = "#"; a.setAttribute("aria-disabled", "true"); a.style.opacity = ".45"; a.style.pointerEvents = "none"; }
+  }
+  $("#plItems").addEventListener("click", function (e) {
+    var b = e.target.closest("[data-pm]"); if (!b) return; var i = +b.getAttribute("data-i"), mx = UNIT[PL[i].id] ? 30 : 3;
+    plQty[i] = Math.max(0, Math.min(mx, (plQty[i] || 0) + +b.getAttribute("data-pm"))); renderPlan();
+  });
+  renderPlan();
+
+  /* ---------- pesquisa e ordem da loja ---------- */
+  $("#shopQ").addEventListener("input", renderShop); $("#shopSort").addEventListener("change", renderShop);
+
+  /* ---------- favoritos ---------- */
+  var favs = []; try { favs = JSON.parse(localStorage.getItem("canilej-fav") || "[]"); if (!Array.isArray(favs)) favs = []; } catch (e) { favs = []; }
+  function renderFavs() {
+    Array.prototype.forEach.call(document.querySelectorAll("[data-fav]"), function (b) {
+      var on = favs.indexOf(b.getAttribute("data-fav")) > -1; b.setAttribute("aria-pressed", on ? "true" : "false"); b.firstElementChild.textContent = on ? "♥" : "♡"; b.lastChild.textContent = on ? " Guardado" : " Guardar";
+    });
+    var bar = $("#favBar"); bar.hidden = !favs.length;
+    if (favs.length) {
+      var list = favs.map(function (n) { var d = DOGS.filter(function (x) { return x.n === n; })[0]; return d ? d.n + " (" + d.b + ", " + kz(d.p) + ")" : n; });
+      $("#favTxt").textContent = favs.length + (favs.length === 1 ? " cão guardado" : " cães guardados");
+      $("#favWa").href = wa("Olá, Canil EJ! Tenho interesse nestes cães:\n- " + list.join("\n- "));
+    }
+    try { localStorage.setItem("canilej-fav", JSON.stringify(favs)); } catch (e) {}
+  }
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-fav]"); if (b) { var n = b.getAttribute("data-fav"), i = favs.indexOf(n); if (i > -1) favs.splice(i, 1); else favs.push(n); renderFavs(); return; }
+    if (e.target.closest("#favClear")) { favs = []; renderFavs(); }
+  });
+  renderFavs();
+
+  /* ---------- inclinação dos portais e títulos que deslizam ---------- */
+  var fine = window.matchMedia && matchMedia("(hover: hover) and (pointer: fine)").matches;
+  if (fine && !calm) {
+    Array.prototype.forEach.call(document.querySelectorAll(".portal"), function (p) {
+      p.addEventListener("pointermove", function (e) { var r = p.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5; p.style.transform = "perspective(900px) rotateY(" + (x * 6).toFixed(2) + "deg) rotateX(" + (-y * 6).toFixed(2) + "deg) translateY(-4px)"; });
+      p.addEventListener("pointerleave", function () { p.style.transform = ""; });
+    });
+  }
+  var h3s = Array.prototype.slice.call(document.querySelectorAll(".chapter h3"));
+  function slideTitles() {
+    if (calm) return;
+    h3s.forEach(function (h) { var r = h.getBoundingClientRect(), p = Math.max(0, Math.min(1, (innerHeight - r.top) / (innerHeight * 0.85))); h.style.transform = "translateX(" + Math.round((1 - p) * 48) + "px)"; });
+  }
+  window.addEventListener("scroll", slideTitles, { passive: true }); slideTitles();
+
+  renderShop(); renderCart();
+})();
+</script>

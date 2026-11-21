@@ -1,0 +1,13 @@
+# Canil EJ
+
+> Canil na Ilha de Luanda, Angola. Cria Boerboel, Husky Siberiano e Rottweiler com pedigree e acompanhamento veterinário. Também oferece serviços, visitas ao canil e loja, com preços em Kwanzas (AOA).
+
+## Conteúdo
+- Raças: Boerboel, Husky Siberiano, Rottweiler (porte, temperamento, cuidados)
+- Serviços e loja: preços em Kwanzas
+- Visitas: marcação por formulário ou WhatsApp (não há visitas ao domingo)
+
+## Língua
+Português (Angola)
+
+<!-- Acrescentar domínio, telefone, e-mail, morada e horário quando forem confirmados. Não inventar dados. -->

@@ -1,0 +1,23 @@
+name: CI
+on:
+  pull_request:
+  push: { branches: [main] }
+jobs:
+  qualidade:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: npm install --no-audit --no-fund
+      - run: npm run lint
+      - run: npm run knip
+      - run: npx commitlint --from=${{ github.event.pull_request.base.sha || 'HEAD~1' }} --to=HEAD
+      - run: npm run test:cov
+      - uses: codecov/codecov-action@v5
+        with: { files: coverage/lcov.info, token: "${{ secrets.CODECOV_TOKEN }}", fail_ci_if_error: false }
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e
+      - run: npm run test:mutation
+  # O deploy de pré-visualização é feito pela integração Git da Vercel em cada PR.

@@ -1,0 +1,27 @@
+{
+  "name": "canil-ej",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "knip": "knip",
+    "test": "node --test tests/unit/*.test.mjs",
+    "test:cov": "node -e \"require('fs').mkdirSync('coverage',{recursive:true})\" && node --test --experimental-test-coverage --test-reporter=lcov --test-reporter-destination=coverage/lcov.info tests/unit/*.test.mjs",
+    "test:e2e": "playwright test",
+    "test:mutation": "stryker run",
+    "commitlint": "commitlint --from=origin/main",
+    "check": "npm run lint && npm run knip && npm test && npm run build"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@commitlint/cli": "^19.5.0",
+    "@commitlint/config-conventional": "^19.5.0",
+    "@playwright/test": "^1.49.0",
+    "@stryker-mutator/core": "^8.7.1",
+    "knip": "^5.40.0",
+    "serve": "^14.2.4"
+  }
+}

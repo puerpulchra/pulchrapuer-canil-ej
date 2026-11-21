@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Substituir DOMINIO pelo endereço final (ex.: canilej.ao) antes de publicar
+Sitemap: https://DOMINIO/sitemap.xml
