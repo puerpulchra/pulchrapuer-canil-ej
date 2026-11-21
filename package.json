@@ -9,7 +9,7 @@
     "lint:fix": "biome check --write .",
     "knip": "knip",
     "test": "node --test tests/unit/*.test.mjs",
-    "test:cov": "node --test --experimental-test-coverage --test-reporter=lcov --test-reporter-destination=coverage/lcov.info tests/unit/*.test.mjs",
+    "test:cov": "node -e \"require('fs').mkdirSync('coverage',{recursive:true})\" && node --test --experimental-test-coverage --test-reporter=lcov --test-reporter-destination=coverage/lcov.info tests/unit/*.test.mjs",
     "test:e2e": "playwright test",
     "test:mutation": "stryker run",
     "commitlint": "commitlint --from=origin/main",
