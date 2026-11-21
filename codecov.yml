@@ -1,0 +1,5 @@
+coverage:
+  status:
+    project: { default: { target: 90%, threshold: 2% } }
+    patch: { default: { target: 90% } }
+comment: { layout: "diff, files", require_changes: true }

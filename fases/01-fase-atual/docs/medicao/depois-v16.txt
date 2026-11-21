@@ -1,0 +1,451 @@
+consistency  /home/claude/canil-x.html
+--quick: not checked: scroll-linked (stepping), scroll-reveal (the reveal walk; IntersectionObserver reveals are read), hover-spill, hidden-visual, loop-pause, forms, reduced-motion, the dead-IntersectionObserver walk (hidden content is read with scripts off and under reduced motion), hover-move. Still told: IntersectionObserver reveals (scroll-reveal), held sections (pinned) and CSS scroll timelines (scroll-linked); faults inside held or [data-big-scene] sections are WARNs
+
+1440x900  22 screens, 2 held sections  60 FAIL  37 WARN
+  FAIL assets          (the page)
+       the stylesheet https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&display=swap did not load (ERR_TUNNEL_CONNECTION_FAILED): everything here was measured without it
+       fix: fix the path, or remove the reference
+  FAIL assets          (the page)
+       the stylesheet https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap did not load (ERR_TUNNEL_CONNECTION_FAILED): everything here was measured without it
+       fix: fix the path, or remove the reference
+  FAIL placeholder     dd#phoneShow  "+244 900 000 000"
+       a stand-in contact printed on the page ("+244 900 000 000"): no visitor can use it (and 1 more like it: "+244 900 000 000")  [1440-47-placeholder.jpg]
+       fix: print the real address and number, or a form or a button that names the action: never an example.com address or a number of zeros
+  FAIL nav             header.top > div.wrap > a.brand  "CANIL ILHA DE LUANDA"
+       nav link wraps to a second line  [1440-01-nav.jpg]
+       fix: make the nav one bar from the content's left edge to its right edge, with every link and action inside it
+  FAIL scroll-reveal   section#caes  "Escolha quem vai mudar a sua casa. Três "
+       starts "color" (0.2 s) the moment it is scrolled into view (an IntersectionObserver) on button.chip:nth-of-type(1)  [1440-19-scroll-reveal.jpg]
+       fix: show it at rest: no fade, rise or unmask when it is scrolled into view
+  FAIL no-visual       section#plano  "Monte o seu plano."
+       no picture, effect or mock in this section; a feature section needs a visual  [1440-33-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  FAIL no-visual       section#visitas  "Venha conhecer antes de decidir."
+       no picture, effect or mock in this section; a feature section needs a visual  [1440-38-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  FAIL no-visual       section#loja  "Tudo para cada fase e cada raça."
+       no picture, effect or mock in this section; a feature section needs a visual  [1440-42-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  FAIL no-visual       section#garantias  "Você leva o cão. Nós ficamos responsávei"
+       no picture, effect or mock in this section; a feature section needs a visual  [1440-44-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  FAIL text-only       section#servicos  "Depois de chegar, nós ficamos."
+       the section is only text: no picture, icon, mock or effect in it (2 sections like it at this width)  [1440-30-text-only.jpg]
+       fix: give the section a visual: a photograph that fits, the real icons, or a UI fragment on a ground
+  FAIL text-only       section#instagram  "Acompanhe o dia a dia do canil."
+       the closing section is only text: no picture, icon, mock or effect in it (2 sections like it at this width)  [1440-46-text-only.jpg]
+       fix: give the section a visual: a photograph that fits, the real icons, or a UI fragment on a ground
+  FAIL card-family     section#caes > div.sec-head.rv  "Escolha quem vai mudar a sua casa."
+       20 cards of one kind (.rv) set their titles in 2 faces: bricolage grotesque (10, like "Escolha quem vai mudar a"), inter (10, like "O QUE VAI VER")  [1440-20-card-family.jpg]
+       fix: draw one card part one way: one fill and one title face for every card of a kind (one featured card may differ)
+  FAIL button-styles   (one screen)
+       3 button styles on one screen: square, fill #0c7a69 ("Tenho interesse"); square, outline #7ee0cf ("Carrinho (0)"); square, fill #7ee0cf ("WhatsApp"); the odd one out: "WhatsApp"  [1440-27-button-styles.jpg]
+       fix: one primary and one secondary button: one shape, one height per size, one label size
+  FAIL button-styles   (one screen)
+       4 button styles on one screen: square, outline #bccfca ("Adicionar"); square, fill #0c7a69 ("Pedir visita"); square, outline #7ee0cf ("Carrinho (0)"); square, fill #7ee0cf ("WhatsApp"); the odd ones out: "Carrinho (0)", "WhatsApp"  [1440-40-button-styles.jpg]
+       fix: one primary and one secondary button: one shape, one height per size, one label size
+  FAIL button-styles   (the page)
+       4 button styles on the page: square, outline #7ee0cf x2 ("Carrinho (0)"); square, fill #7ee0cf x2 ("Conhecer os cães"); square, fill #0c7a69 x12 ("Tenho interesse"); square, outline #bccfca x25 ("Adicionar")  [1440-02-button-styles.jpg]
+       fix: one primary and one secondary button: one shape, one height per size, one label size
+  FAIL heading-scale   article#boerboel > div.chapter-head > h3  "Boerboel"
+       an h3 at 137.6px, as large as the smallest h2 (44.8px) or larger (and 2 more like it: "Husky Siberiano", "Rottweiler")  [1440-24-heading-scale.jpg]
+       fix: size headings by level: the h1 largest, one size per level, each level below the one above
+  FAIL heading-scale   div#contacto > div.wrap > div.rv.in:nth-of-type(1) > h2  "Venha conhecer o Canil EJ."
+       h2 headings in 3 sizes, 44.8px ("Boerboel") to 89.6px (x2.00)  [1440-48-heading-scale.jpg]
+       fix: size headings by level: the h1 largest, one size per level, each level below the one above
+  FAIL heading-scale   article#boerboel > div.chapter-head > h3  "Boerboel"
+       h3 headings in 7 sizes, 12px ("PACOTES COMBINADOS") to 137.6px (x11.47)  [1440-25-heading-scale.jpg]
+       fix: size headings by level: the h1 largest, one size per level, each level below the one above
+  FAIL off-grid        article#boerboel > div.chapter-head > h3  "Boerboel"
+       left edge at 159px, 19px off the page margin at 140px (181 elements, like p.note-sm)  [1440-26-off-grid.jpg]
+       fix: move it onto the page margin, or the column edge its section uses
+  FAIL off-grid        div#packList > details.svc.pack:nth-of-type(3) > summary > span.sd  "Cerca de 2 meses"
+       left edge at 506.5px, 11.5px off a common edge of its section at 518px (7 elements, like span.sd)  [1440-32-off-grid.jpg]
+       fix: move it onto the page margin, or the column edge its section uses
+  FAIL off-grid        div.vcols > div:nth-of-type(1) > ul > li:nth-of-type(1)  "Instalações e áreas de descanso"
+       left edge at 158px, 18px off the page margin at 140px (181 elements, like h3); 10 more in this section off the grid too (li:nth-of-type(2) at 158px, li:nth-of-type(3) at 158px, li:nth-of-type(4) at 158px, h3 at 492px, ...)  [1440-35-off-grid.jpg]
+       fix: move it onto the page margin, or the column edge its section uses
+  FAIL off-grid        div.group:nth-of-type(4) > div.rows > article.prow:nth-of-type(4) > div.pa  "SEM STOCK"
+       left edge at 1216px, 24px off a common edge of its section at 1192px (25 elements, like button.btn.btn-line)  [1440-43-off-grid.jpg]
+       fix: move it onto the page margin, or the column edge its section uses
+  FAIL section-gaps    section#instagram / footer.bleed
+       1062px between these sections (never on one screen), +911% against the median 105px
+       fix: use one gap between sections (all within 25% of each other)
+  FAIL hole            section#plano  "Monte o seu plano."
+       an empty hole 627x874px inside the section (97% of the screen's height), with content above and below it  [1440-34-hole.jpg]
+       fix: close the empty space: move the content together, or give the space the visual it lacks
+  FAIL links           a#plWa  "Pedir este plano por WhatsApp"
+       "Pedir este plano por WhatsApp" goes to "#", nowhere  [1440-36-links.jpg]
+       fix: point every link at a real section, page or file
+  FAIL links           a#vsWa  "Enviar por WhatsApp"
+       "Enviar por WhatsApp" goes to "#", nowhere
+       fix: point every link at a real section, page or file
+  FAIL links           a#favWa  "Enviar por WhatsApp"
+       "Enviar por WhatsApp" goes to "#", nowhere
+       fix: point every link at a real section, page or file
+  FAIL links           a#checkout  "Finalizar por WhatsApp"
+       "Finalizar por WhatsApp" goes to "#", nowhere
+       fix: point every link at a real section, page or file
+  FAIL focus-visible   div#finder > div.f-row:nth-of-type(1) > div.chips > button.chip:nth-of-type(1)  "Guarda e segurança"
+       Tab stop 17, button "Guarda e segurança": the focus lands on something you cannot see
+       fix: keep the kit's ring (system.css :focus-visible, 2px in --action, there at once); a control that hides itself shows on focus
+  WARN pinned          div#agendar  "Agendar serviço Escolha o serviço, o dia"
+       held on screen for 0.7 screens of scroll (position: sticky) while the page moves on (a narrow sticky column)  [1440-50-pinned.jpg]
+       fix: let the section scroll with the page
+  WARN pinned          div#marcarVisita  "Marcar visita Segunda a sábado, das 08h0"
+       held on screen for 0.6 screens of scroll (position: sticky) while the page moves on (a narrow sticky column)  [1440-51-pinned.jpg]
+       fix: let the section scroll with the page
+  WARN no-visual       section#caes  "Escolha quem vai mudar a sua casa."
+       pictures, effects and mocks cover 15% of this section; a feature section needs a visual (about 25% or more)  [1440-21-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  WARN copy-headline   div.hero.bleed > div.wrap > div.hero-copy > h1  "Nascem para proteger. Crescem para amar."
+       "Nascem para proteger. Crescem para amar.": no category known to check it against (pass --category, or write the <title> as "Name: what it is for whom")  [1440-03-copy-headline.jpg]
+       fix: put the category noun in the h1 (and who it is for, or where), in 2 to 8 words
+  WARN copy-headings   div#portals > a.portal:nth-of-type(1) > div.cap > h2  "Boerboel"
+       "Boerboel" names no product, part, place or section (32 headings like it; at most one brand line per page) (and 31 more like it: "Escolha quem vai mudar a", "Qual raça combina com a ", "Comparar raças", "Boerboel", ...)  [1440-16-copy-headings.jpg]
+       fix: name the thing in every heading: the product, a part, the place or a section noun
+  WARN copy-buttons    button#openCart  "Carrinho (0)"
+       "Carrinho (0)" does not start with a verb (book, buy, try, start, get, see...) (and 10 more like it: "Conhecer os cães", "Marcar visita", "Tenho interesse", "Pedir agendamento", ...)  [1440-04-copy-buttons.jpg]
+       fix: label buttons with a verb and what the visitor gets ("Book a room", "Start free trial")
+  WARN copy-actions    (the page)
+       11 different button labels on the page (at most 10)
+       fix: few actions, one wording: at most 2 in the hero, the main action word for word in nav, hero and close
+  WARN copy-actions    (the page)
+       the main action "WhatsApp" does not read word for word the same in the closing section
+       fix: few actions, one wording: at most 2 in the hero, the main action word for word in nav, hero and close
+  WARN off-grid        div#finder > div.f-row:nth-of-type(1) > div.chips > button.chip:nth-of-type(1)  "Guarda e segurança"
+       two common left edges of one section 12px apart: 266px (10 elements, like this one) and 254px (14)  [1440-22-off-grid.jpg]
+       fix: move it onto the page margin, or the column edge its section uses
+  WARN off-grid        div.dog:nth-of-type(4) > div:nth-of-type(1) > div.tags > span:nth-of-type(3)  "Com pedigree"
+       two common left edges of one section 10px apart: 462px (7 elements, like this one) and 472px (8)  [1440-28-off-grid.jpg]
+       fix: move it onto the page margin, or the column edge its section uses
+  WARN off-grid        div.svc-group.rv:nth-of-type(1) > details.svc:nth-of-type(1) > summary > span.sd  "1h30 a 2h30"
+       two common left edges of one section 7px apart: 525px (3 elements, like this one) and 518px (7)  [1440-29-off-grid.jpg]
+       fix: move it onto the page margin, or the column edge its section uses
+  WARN off-grid        div#finder > div.f-row:nth-of-type(1) > div.chips > button.chip:nth-of-type(2)  "Companhia para a família"
+       left edge at 451px, 11px off a common edge of its section at 462px (7 elements, none of them near it)  [1440-23-off-grid.jpg]
+       fix: move it onto the page margin, or the column edge its section uses
+  WARN section-gaps    main#inicio > div.hero.bleed / section#caes
+       143px between these sections, +30% against the median 110px of gaps at a change of ground  [1440-17-section-gaps.jpg]
+       fix: use one gap between sections (all within 25% of each other)
+  WARN section-gaps    main#inicio > div.hero.bleed / section#caes
+       uneven space at the edge of a band: 87px outside its edge, 56px inside it (the space on either side of a change of ground reads as one gap only when the two match)  [1440-18-section-gaps.jpg]
+       fix: use one gap between sections (all within 25% of each other)
+  WARN nav-family      header.top
+       the nav's links and actions use 2 type families (Inter, Arial)  [1440-05-nav-family.jpg]
+       fix: keep one nav on every screen: the same bar, fill, links and type
+  WARN nav-labels      header.top > div.wrap > nav.nav > a:nth-of-type(1)  "Cães"
+       "Cães" opens a section headed "Escolha quem vai mudar a sua casa."  [1440-06-nav-labels.jpg]
+       fix: name each nav link after the heading of the section it opens
+  WARN nav-labels      header.top > div.wrap > nav.nav > a:nth-of-type(2)  "Serviços"
+       "Serviços" opens a section headed "Depois de chegar, nós ficamos."  [1440-07-nav-labels.jpg]
+       fix: name each nav link after the heading of the section it opens
+  WARN nav-labels      header.top > div.wrap > nav.nav > a:nth-of-type(3)  "Visitas"
+       "Visitas" opens a section headed "Venha conhecer antes de decidir."  [1440-08-nav-labels.jpg]
+       fix: name each nav link after the heading of the section it opens
+  WARN nav-labels      header.top > div.wrap > nav.nav > a:nth-of-type(4)  "Loja"
+       "Loja" opens a section headed "Tudo para cada fase e cada raça."  [1440-09-nav-labels.jpg]
+       fix: name each nav link after the heading of the section it opens
+  WARN nav-labels      header.top > div.wrap > nav.nav > a:nth-of-type(5)  "Garantias"
+       "Garantias" opens a section headed "Você leva o cão. Nós ficamos responsáveis."  [1440-10-nav-labels.jpg]
+       fix: name each nav link after the heading of the section it opens
+  WARN nav-labels      header.top > div.wrap > nav.nav > a:nth-of-type(6)  "Instagram"
+       "Instagram" opens a section headed "Acompanhe o dia a dia do canil."  [1440-11-nav-labels.jpg]
+       fix: name each nav link after the heading of the section it opens
+  WARN nav-labels      header.top > div.wrap > nav.nav > a:nth-of-type(7)  "Contacto"
+       "Contacto" opens a section headed "Venha conhecer o Canil EJ."  [1440-12-nav-labels.jpg]
+       fix: name each nav link after the heading of the section it opens
+  WARN stranded-action a#plWa  "Pedir este plano por WhatsApp"
+       stands 948px down from the nearest text of its block ("Escolha os serviços e as quant")  [1440-37-stranded-action.jpg]
+       fix: put the button under or beside the text it belongs to
+  WARN stranded-action div.rows > article.prow:nth-of-type(1) > div.pa > button.btn.btn-line  "Adicionar"
+       stands 569px across from the nearest text of its block ("Ração filhote raças grandes") (and 24 more like it: "Adicionar", "Adicionar", "Adicionar", "Adicionar", ...)  [1440-41-stranded-action.jpg]
+       fix: put the button under or beside the text it belongs to
+  WARN copy-length     div.hero.bleed > div.wrap > div.hero-copy > h1  "Nascem para proteger. Crescem para amar."
+       a headline of 6 words on 4 lines at 108.8px: a paragraph set in display type  [1440-13-copy-length.jpg]
+       fix: cut the heading to one short line (2 to 12 words) and move the rest into the text under it
+  WARN one-screen      section#garantias  "Você leva o cão. Nós ficamos responsávei"
+       1 section is shorter than the screen, so the next one's heading or picture shows with it: "Você leva o cão. Nós ficamos responsávei" is 651px of the 839px under the nav, and "Acompanhe o dia a dia do canil" shows below it  [1440-45-one-screen.jpg]
+       fix: give each section the screen (min-height: 100svh less the nav, its content centred), or join two short ones into one
+  WARN font-load       div.hero.bleed > div.wrap > div.hero-copy > h1  "Bricolage Grotesque"
+       "Bricolage Grotesque" is asked for by --font-display, the h1 and the h2s but never loaded (no font link or @font-face loads it): it shows in its fallback  [1440-14-font-load.jpg]
+       fix: load every family the type asks for: name it in the font link as start.mjs prints it, spelt as Google Fonts spells it, or ask for a family the page loads
+  WARN hero-enter      main#inicio > div.hero.bleed
+       the hero does not enter on load: no data-enter on the hero and no head line setting html.m-enter (motion.md, The hero's entrance)  [1440-15-hero-enter.jpg]
+       fix: put data-enter on the hero <section> and keep the head line from starter.html that sets html.m-enter
+  WARN moment-none     (the page)
+       a place page (--type) deals no moment: every kind carries one, two on a long page (moments.md)
+       fix: deal one (moments.mjs pick --page place --photo) and mount it in its own section
+  WARN skip-link       a.skip:nth-of-type(1)  "Saltar para o conteúdo"
+       the first Tab stop is "Saltar para o conteúdo", not a skip link: a keyboard user tabs through the whole nav on every visit
+       fix: add the starter's skip link as the header's first child: <a class="skip-link" href="#top">Skip to content</a>
+  WARN share-meta      head
+       the head lacks og:image, twitter:card, an icon: a shared link shows no picture or title of its own
+       fix: copy the head block of starter.html: og tags, twitter:card, the icon and theme-color (references/system.md, Head)
+  WARN form-fields     form#bookForm
+       the form has no status line (role="status"): sending, sent and errors are never read out  [1440-31-form-fields.jpg]
+       fix: give each field its type, autocomplete and inputmode, never block paste or disable the button before a submit, and add the status line (references/system.md, Forms)
+  WARN form-fields     form#visForm
+       the form has no status line (role="status"): sending, sent and errors are never read out  [1440-39-form-fields.jpg]
+       fix: give each field its type, autocomplete and inputmode, never block paste or disable the button before a submit, and add the status line (references/system.md, Forms)
+  WARN form-fields     form#ctForm
+       the form has no status line (role="status"): sending, sent and errors are never read out  [1440-49-form-fields.jpg]
+       fix: give each field its type, autocomplete and inputmode, never block paste or disable the button before a submit, and add the status line (references/system.md, Forms)
+  FAIL hero-screen     main#inicio > div.hero.bleed  "Canil EJ · Ilha de Luanda Nascem para pr"
+       the hero ends at 1431px on a 900px screen, 531px below the fold: it ends at the fold, 1px either way (SR-1)  [1440-rhythm-01-hero-screen.jpg]
+       fix: make the hero exactly one screen (height: 100svh, its content fitted inside), never taller or shorter
+  FAIL section-height  section#caes  "Nossos cães Escolha quem vai mudar a sua"
+       the section is 5151px tall (5.7 screens), 3351px over two screens (1800px): every section after the hero is one screen or two, 2px either way (SR-2)  [1440-rhythm-02-section-height.jpg]
+       fix: set the section to one screen or two (height: calc(var(--h,1) * 100vh), --h 1 or 2) and cut or split its content to fit
+  FAIL section-height  section#loja  "Loja Tudo para cada fase e cada raça. Ra"
+       the section is 3222px tall (3.6 screens), 1422px over two screens (1800px): every section after the hero is one screen or two, 2px either way (SR-2)
+       fix: set the section to one screen or two (height: calc(var(--h,1) * 100vh), --h 1 or 2) and cut or split its content to fit
+  FAIL section-height  footer.bleed  "Canil EJ · Ilha de LuandaPreços em Kwanz"
+       the section is 70px tall (0.1 screens), 830px short of one screen (900px): every section after the hero is one screen or two, 2px either way (and 5 more like it: "Instagram Acompanhe o di", "Visitas Venha conhecer a", "Monte o seu plano. Escol") (SR-2)
+       fix: set the section to one screen or two (height: calc(var(--h,1) * 100vh), --h 1 or 2) and cut or split its content to fit
+  FAIL section-height  section#visitas  "Visitas Venha conhecer antes de decidir."
+       the section starts at 9427px, 427px below the screen grid (10 x 900px): sections start on whole screens (SR-2)
+       fix: make every section above it exactly one or two screens tall, so this one starts on a whole screen
+  FAIL section-height  section#caes  "Nossos cães Escolha quem vai mudar a sua"
+       the section starts at 1431px, 369px above the screen grid (2 x 900px): sections start on whole screens (SR-2)
+       fix: make every section above it exactly one or two screens tall, so this one starts on a whole screen
+  FAIL section-height  section#instagram  "Instagram Acompanhe o dia a dia do canil"
+       the section starts at 14737px, 337px below the screen grid (16 x 900px): sections start on whole screens (and 6 more like it: "Garantias do Canil EJ Vo", "Serviços Depois de chega", "Canil EJ · Ilha de Luand") (SR-2)
+       fix: make every section above it exactly one or two screens tall, so this one starts on a whole screen
+  FAIL section-height  section#instagram  "Instagram Acompanhe o dia a dia do canil"
+       the section's content does not fit it: its lowest content ends 450px below its top, past 378px (the section less 72px of bottom padding) (SR-2)
+       fix: fit the content above the section's bottom padding (--padb), or make it two screens (.g2) in two groups
+  FAIL section-height  section#visitas  "Visitas Venha conhecer antes de decidir."
+       the section's content does not fit it: its lowest content ends 1434px below its top, past 1366px (the section less 72px of bottom padding) (and 6 more like it: "Monte o seu plano. Escol", "Loja Tudo para cada fase", "Serviços Depois de chega") (SR-2)
+       fix: fit the content above the section's bottom padding (--padb), or make it two screens (.g2) in two groups
+  FAIL section-air     div#finder  "Qual raça combina com a sua casa? Procur"
+       a top border across 100% of the container, between the section's content: sections and their parts are told apart by air and ground, not lines (SR-3)  [1440-rhythm-03-section-air.jpg]
+       fix: take the rule out: sections and their parts are parted by their ground and the air between them
+  FAIL section-air     div#cmpOut > div.cmp-grid  "BoerboelRottweilerPorteGigante, 55 a 90 "
+       a top border across 100% of the container, between the section's content: sections and their parts are told apart by air and ground, not lines (SR-3)
+       fix: take the rule out: sections and their parts are parted by their ground and the air between them
+  WARN section-air     section#visitas / section#loja
+       91px of air between the content of these two sections: 128-480px (64-600px WARN) (every gap out of the band at 1440px, top to bottom: 118px after "Nossos cães Escolha ", 110px after "Serviços Depois de c", 102px after "Monte o seu plano. E", 91px after "Visitas Venha conhec", 105px after "Loja Tudo para cada ", 115px after "Garantias do Canil E") (SR-3)
+       fix: keep 128-480px of air between the content of neighbouring sections (112-420px on a phone): the sections' padding (--padt, --padb)
+  WARN section-air     section#plano / section#visitas
+       102px of air between the content of these two sections: 128-480px (64-600px WARN) (SR-3)
+       fix: keep 128-480px of air between the content of neighbouring sections (112-420px on a phone): the sections' padding (--padt, --padb)
+  WARN section-air     section#loja / section#garantias
+       105px of air between the content of these two sections: 128-480px (64-600px WARN) (SR-3)
+       fix: keep 128-480px of air between the content of neighbouring sections (112-420px on a phone): the sections' padding (--padt, --padb)
+  FAIL one-section     section#plano  "Monte o seu plano. Escolha os serviços e"
+       the screen at scroll 9000px (stride 10) shows 419px of section 4 and the content of 2 sections, over 24px each beside section 5: a screen shows one section (another may peek 8px, 24px WARN) (SR-4)  [1440-rhythm-04-one-section.jpg]
+       fix: make each section exactly one screen or two, so a screen shows one section and no neighbour peeks
+  FAIL one-section     section#caes > div.sec-head.rv > h2  "Escolha quem vai mudar a sua casa."
+       the screen at scroll 900px (stride 1) shows 369px of section 2 and the heading of section 2 whole and the content of 2 sections, over 24px each beside section 1: a screen shows one section (another may peek 8px, 24px WARN) (SR-4)
+       fix: make each section exactly one screen or two, so a screen shows one section and no neighbour peeks
+  FAIL one-section     section#garantias  "Garantias do Canil EJ Você leva o cão. N"
+       the screen at scroll 14400px (stride 16) shows 337px of section 7 and the content of 2 sections, over 24px each beside section 8: a screen shows one section (another may peek 8px, 24px WARN) (and 5 more like it: scroll 13500px, scroll 6300px, scroll 14087px) (SR-4)
+       fix: make each section exactly one screen or two, so a screen shows one section and no neighbour peeks
+  FAIL one-section     main#inicio > div.hero.bleed  "Canil EJ · Ilha de Luanda Nascem para pr"
+       a <div> sits directly in <main>: every part of <main> is a <section> (SR-4)
+       fix: put every block of <main> in a <section>, and give a band its own section instead of a ground inside one
+  FAIL one-heading     div#portals > a.portal:nth-of-type(1) > div.cap > h2  "Boerboel"
+       the hero holds an h2 (3): its heading is the h1, and an h2 opens the next section (SR-5)  [1440-rhythm-05-one-heading.jpg]
+       fix: give each section one h2, first in its .wrap, and the hero only its h1
+  FAIL one-heading     section#caes > div.sec-head.rv > h2  "Escolha quem vai mudar a sua casa."
+       headings of two sections show whole on one screen at 15 of 309 scroll positions (4.9%; at scroll 750, 800, 850, 900px), here with "Boerboel": at most 3% on a desktop (SR-5)
+       fix: make the sections one screen tall so their headings sit a screen apart and two never share one
+  FAIL container-edges header.top  "CanilIlha de Luanda Cães Serviços Visita"
+       the nav's content runs 140px from the left and 140px from the right: the margin is 64-120px at 1440px (one container, equal margins, 2px either way) (SR-6)  [1440-rhythm-06-container-edges.jpg]
+       fix: use one container on every section and the nav (.wrap): one margin left and right, 64-120px on a desktop, 16-24px on a phone
+  FAIL container-edges main#inicio > div.hero.bleed  "Canil EJ · Ilha de Luanda Nascem para pr"
+       the content of section 1 runs 140px from the left and 140px from the right: the margin is 64-120px at 1440px (one container, equal margins, 2px either way) (SR-6)
+       fix: use one container on every section and the nav (.wrap): one margin left and right, 64-120px on a desktop, 16-24px on a phone
+  FAIL container-edges section#caes  "Nossos cães Escolha quem vai mudar a sua"
+       the content of section 2 runs 140px from the left and 140px from the right (read from its outermost blocks: no .wrap): the margin is 64-120px at 1440px (one container, equal margins, 2px either way) (and 7 more like it: "Serviços Depois de chega", "Monte o seu plano. Escol", "Visitas Venha conhecer a") (SR-6)
+       fix: use one container on every section and the nav (.wrap): one margin left and right, 64-120px on a desktop, 16-24px on a phone
+  FAIL container-edges a.skip  "Saltar para o conteúdo"
+       a <a> at the top of the page, outside header.nav, main, footer.closing and nav.actionbar (SR-6)
+       fix: build the page as header.nav, a main of sections (each one in-flow .wrap plus background layers) and footer.closing
+  FAIL container-edges header.top  "CanilIlha de Luanda Cães Serviços Visita"
+       a <header> at the top of the page, outside header.nav, main, footer.closing and nav.actionbar (and 13 more like it: "Contacto Venha conhecer ", "Canil EJ · Ilha de Luand", "WhatsApp") (SR-6)
+       fix: build the page as header.nav, a main of sections (each one in-flow .wrap plus background layers) and footer.closing
+  FAIL container-edges div#portals > a.portal:nth-of-type(3) > div.cap > h2  "Rottweiler"
+       the h2 starts 801px right of the container's left: every h1 and h2 starts on it, 2px either way (SR-6)
+       fix: start the text on the container's left, or on the one split line every split shares
+  FAIL container-edges article#boerboel > div.chapter-body > div > p.intro  "Mastim sul-africano de guarda. Forte, le"
+       6 text blocks start on a left line at x 647, 507px from the container's left: text starts on the container's left, or on one split line (x 633, 732, 831) (also "No clima de LuandaPelo curto e o", "Enérgico, sociável e independent", "No clima de LuandaPelagem densa:") (and 6 more like it: "Husky Siberiano", x 265, x 254) (SR-6)
+       fix: start the text on the container's left, or on the one split line every split shares
+  FAIL container-edges main#inicio > div.hero.bleed > svg.bigej
+       a <svg> over half the container wide runs 724-1432px, not on the container's lines at 140-1300px (SR-6)
+       fix: run the picture or box from the container's left line to its right line, or put it in a row or a split
+  FAIL split-pair      article#boerboel > div.chapter-body  "Mastim sul-africano de guarda. Forte, le"
+       the split's left column starts with a picture or a box, not text: text left, the visual right, on every split (SR-8)  [1440-rhythm-07-split-pair.jpg]
+       fix: put the text in the left column and the visual in the right, on every split
+  FAIL split-pair      article#husky > div.chapter-body  "Enérgico, sociável e independente. Preci"
+       the split's left column starts with a picture or a box, not text: text left, the visual right, on every split (SR-8)
+       fix: put the text in the left column and the visual in the right, on every split
+  FAIL split-pair      article#rottweiler > div.chapter-body  "Raça alemã de guarda e de trabalho. Inte"
+       the split's left column starts with a picture or a box, not text: text left, the visual right, on every split (and 1 more like it: "Conhecer o canilConhecer") (SR-8)
+       fix: put the text in the left column and the visual in the right, on every split
+  FAIL split-pair      section#servicos > div.svc-layout  "Cuidado e saúdeBanho, higiene e veteriná"
+       the split's columns are off the page's one pair of lines: its right column starts at x 852, the first split's at 647; its right column starts at x 852, on none of the split lines 633 (k=5), 732 (k=6), 831 (k=7) (SR-8)
+       fix: start every split's right column on one shared line (wrap.left + k x (width + 24) / 12, k 5, 6 or 7; 6 on a place page) and end the left one 24px before it
+  FAIL split-pair      section#visitas > div.svc-layout  "Conhecer o canilConhecer um cãoEntrega o"
+       the split's columns are off the page's one pair of lines: its right column starts at x 852, the first split's at 647; its right column starts at x 852, on none of the split lines 633 (k=5), 732 (k=6), 831 (k=7) (SR-8)
+       fix: start every split's right column on one shared line (wrap.left + k x (width + 24) / 12, k 5, 6 or 7; 6 on a place page) and end the left one 24px before it
+  FAIL split-pair      article#boerboel > div.chapter-body  "Mastim sul-africano de guarda. Forte, le"
+       the split's columns are off the page's one pair of lines: its right column starts at x 647, on none of the split lines 633 (k=5), 732 (k=6), 831 (k=7) (and 2 more like it: "Enérgico, sociável e ind", "Raça alemã de guarda e d") (SR-8)
+       fix: start every split's right column on one shared line (wrap.left + k x (width + 24) / 12, k 5, 6 or 7; 6 on a place page) and end the left one 24px before it
+
+390x844  9 screens  24 FAIL  9 WARN
+  FAIL hero-fill       section#caes  "Escolha quem vai mudar a sua casa."
+       the next section shows on the first screen: it starts at 1070px on a 2121px screen (the hero ends at 1070px)  [390-01-hero-fill.jpg]
+       fix: let the hero fill the first screen alone (min-height: 100svh, less above it): nothing of the next section on load
+  FAIL flush           section#instagram > div.ig-cta > a.btn.btn-primary  "Seguir @canilej.ao"
+       its button sits 0px above the lower edge of section#instagram, where the ground changes to the footer  [390-30-flush.jpg]
+       fix: give the section its padding at the edge where the ground changes (the closing call keeps a clear gap above the footer)
+  FAIL nav             header.top > div.wrap > a.brand  "CANIL ILHA DE LUANDA"
+       nav link wraps to a second line  [390-02-nav.jpg]
+       fix: make the nav one bar from the content's left edge to its right edge, with every link and action inside it
+  FAIL nav-covers      a#waFab  "WhatsApp"
+       sits on top of the text "PREÇOS EM KWANZAS (KZ)" while the page scrolls: part of the line shows beside it  [390-31-nav-covers.jpg]
+       fix: make the fixed nav one opaque band across the whole screen, or let it scroll away with the page
+  FAIL cut-text        header.top > div.wrap > nav.nav > a:nth-of-type(1)  "Cães"
+       cut 8px at the left by the overflow of header.top > div.wrap > nav.nav  [390-03-cut-text.jpg]
+       fix: give the text room: no overflow clipping a line, no line past its box
+  FAIL scroll-reveal   section#caes  "Escolha quem vai mudar a sua casa. Três "
+       starts "color" (0.2 s) the moment it is scrolled into view (an IntersectionObserver) on button.chip:nth-of-type(1)  [390-11-scroll-reveal.jpg]
+       fix: show it at rest: no fade, rise or unmask when it is scrolled into view
+  FAIL no-visual       section#caes  "Escolha quem vai mudar a sua casa."
+       pictures, effects and mocks cover 13% of this section; a feature section needs a visual (about 25% or more)  [390-12-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  FAIL no-visual       section#plano  "Monte o seu plano."
+       no picture, effect or mock in this section; a feature section needs a visual  [390-21-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  FAIL no-visual       section#visitas  "Venha conhecer antes de decidir."
+       no picture, effect or mock in this section; a feature section needs a visual  [390-25-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  FAIL no-visual       section#loja  "Tudo para cada fase e cada raça."
+       no picture, effect or mock in this section; a feature section needs a visual  [390-29-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  FAIL card-family     div#svcList > div.svc-group.rv:nth-of-type(1)  "Cuidado e saúde"
+       19 cards of one kind (.rv) set their titles in 2 faces: bricolage grotesque (6, like "Cuidado e saúde"), inter (10, like "O QUE VAI VER")  [390-17-card-family.jpg]
+       fix: draw one card part one way: one fill and one title face for every card of a kind (one featured card may differ)
+  FAIL button-styles   (one screen)
+       3 button styles on one screen: square, fill #0c7a69 ("Tenho interesse"); square, outline #7ee0cf ("Carrinho (0)"); square, fill #7ee0cf ("WhatsApp"); the odd one out: "WhatsApp"  [390-13-button-styles.jpg]
+       fix: one primary and one secondary button: one shape, one height per size, one label size
+  FAIL button-styles   (one screen)
+       4 button styles on one screen: square, outline #bccfca ("Adicionar"); square, fill #0c7a69 ("Pedir visita"); square, outline #7ee0cf ("Carrinho (0)"); square, fill #7ee0cf ("WhatsApp"); the odd ones out: "Carrinho (0)", "WhatsApp"  [390-26-button-styles.jpg]
+       fix: one primary and one secondary button: one shape, one height per size, one label size
+  FAIL button-styles   (the page)
+       4 button styles on the page: square, outline #7ee0cf x2 ("Carrinho (0)"); square, fill #7ee0cf x2 ("Conhecer os cães"); square, fill #0c7a69 x12 ("Tenho interesse"); square, outline #bccfca x25 ("Adicionar")  [390-04-button-styles.jpg]
+       fix: one primary and one secondary button: one shape, one height per size, one label size
+  FAIL heading-scale   article#boerboel > div.chapter-head > h3  "Boerboel"
+       an h3 at 107.8px, as large as the smallest h2 (33.3px) or larger (and 2 more like it: "Husky Siberiano", "Rottweiler")  [390-14-heading-scale.jpg]
+       fix: size headings by level: the h1 largest, one size per level, each level below the one above
+  FAIL heading-scale   div#contacto > div.wrap > div.rv.in:nth-of-type(1) > h2  "Venha conhecer o Canil EJ."
+       h2 headings in 3 sizes, 33.3px ("Boerboel") to 68.6px (x2.06)  [390-32-heading-scale.jpg]
+       fix: size headings by level: the h1 largest, one size per level, each level below the one above
+  FAIL heading-scale   article#boerboel > div.chapter-head > h3  "Boerboel"
+       h3 headings in 7 sizes, 12px ("PACOTES COMBINADOS") to 107.8px (x8.98)  [390-15-heading-scale.jpg]
+       fix: size headings by level: the h1 largest, one size per level, each level below the one above
+  FAIL off-grid        div#finder > div.f-row:nth-of-type(1) > div.chips > button.chip:nth-of-type(2)  "Companhia para a família"
+       left edge at 335px, 11px off a common edge of its section at 346px (7 elements); 4 more in this section off the grid too (button.chip:nth-of-type(2) at 297px, button.chip:nth-of-type(3) at 456px, button.chip:nth-of-type(2) at 281.5px, h3 at 40px)  [390-05-off-grid.jpg]
+       fix: move it onto the page margin, or the column edge its section uses
+  FAIL off-grid        div#packList > details.svc.pack:nth-of-type(3) > summary > span.sd  "Cerca de 2 meses"
+       left edge at 253.5px, 11.5px off a common edge of its section at 265px (7 elements, like span.sd)  [390-18-off-grid.jpg]
+       fix: move it onto the page margin, or the column edge its section uses
+  FAIL off-grid        div.vcols > div:nth-of-type(1) > ul > li:nth-of-type(1)  "Instalações e áreas de descanso"
+       left edge at 42px, 18px off the page margin at 24px (181 elements, like h3); 10 more in this section off the grid too (li:nth-of-type(2) at 42px, li:nth-of-type(3) at 42px, li:nth-of-type(4) at 42px, h3 at 307.5px, ...)  [390-22-off-grid.jpg]
+       fix: move it onto the page margin, or the column edge its section uses
+  FAIL off-grid        select#shopSort  "Recomendado Preço, do menor ao maior Pre"
+       left edge at 402.5px, 4.5px off a common edge of its section at 398px (52 elements, like span:nth-of-type(1)); 2 more in this section off the grid too (label:nth-of-type(2) at 402.5px, div.pa at 872px)  [390-27-off-grid.jpg]
+       fix: move it onto the page margin, or the column edge its section uses
+  FAIL right-edge      main#inicio > div.hero.bleed > svg.bigej
+       its right edge runs 16px past the content's right edge (956px, where 10 boxes end)  [390-06-right-edge.jpg]
+       fix: end it on the content's right edge, like the other blocks of its section
+  FAIL section-gaps    section#instagram / footer.bleed
+       1029px between these sections, +807% against the median 114px of gaps at a change of ground  [390-33-section-gaps.jpg]
+       fix: use one gap between sections (all within 25% of each other)
+  FAIL hole            section#plano  "Monte o seu plano."
+       an empty hole 384x960px inside the section (45% of the screen's height), with content above and below it  [390-23-hole.jpg]
+       fix: close the empty space: move the content together, or give the space the visual it lacks
+  WARN text-only       section#servicos  "Depois de chegar, nós ficamos."
+       the section is only text: no picture, icon, mock or effect in it  [390-19-text-only.jpg]
+       fix: give the section a visual: a photograph that fits, the real icons, or a UI fragment on a ground
+  WARN off-grid        div#finder > div.f-row:nth-of-type(1) > div.chips > button.chip:nth-of-type(1)  "Guarda e segurança"
+       two common left edges of one section 12px apart: 150px (10 elements, like this one) and 138px (14)  [390-07-off-grid.jpg]
+       fix: move it onto the page margin, or the column edge its section uses
+  WARN off-grid        div > dl.specs > div:nth-of-type(2) > dt.mono  "PORTE"
+       two common left edges of one section 16px apart: 696px (12 elements, like this one) and 680px (14)  [390-16-off-grid.jpg]
+       fix: move it onto the page margin, or the column edge its section uses
+  WARN off-grid        div.svc-group.rv:nth-of-type(1) > details.svc:nth-of-type(1) > summary > span.sd  "1h30 a 2h30"
+       two common left edges of one section 7px apart: 272px (3 elements, like this one) and 265px (7)  [390-20-off-grid.jpg]
+       fix: move it onto the page margin, or the column edge its section uses
+  WARN section-gaps    main#inicio > div.hero.bleed / section#caes
+       144px between these sections, +27% against the median 114px of gaps at a change of ground  [390-08-section-gaps.jpg]
+       fix: use one gap between sections (all within 25% of each other)
+  WARN section-gaps    main#inicio > div.hero.bleed / section#caes
+       uneven space at the edge of a band: 88px outside its edge, 56px inside it (the space on either side of a change of ground reads as one gap only when the two match)  [390-09-section-gaps.jpg]
+       fix: use one gap between sections (all within 25% of each other)
+  WARN nav-family      header.top
+       the nav's links and actions use 2 type families (Inter, Arial)  [390-10-nav-family.jpg]
+       fix: keep one nav on every screen: the same bar, fill, links and type
+  WARN stranded-action a#plWa  "Pedir este plano por WhatsApp"
+       stands 948px down from the nearest text of its block ("Escolha os serviços e as quant")  [390-24-stranded-action.jpg]
+       fix: put the button under or beside the text it belongs to
+  WARN stranded-action div.rows > article.prow:nth-of-type(1) > div.pa > button.btn.btn-line  "Adicionar"
+       stands 472px across from the nearest text of its block ("Ração filhote raças grandes") (and 24 more like it: "Adicionar", "Adicionar", "Adicionar", "Adicionar", ...)  [390-28-stranded-action.jpg]
+       fix: put the button under or beside the text it belongs to
+
+the page at 320x640, walked for what runs past the screen's edge  0 FAIL
+
+checks
+  FAIL assets                 PASS shader-lint            PASS gl-fallback            
+  PASS empty-visual           FAIL hero-fill              FAIL flush                  
+  FAIL placeholder            PASS sample-label           PASS caption                
+  PASS credit-wall            FAIL nav                    FAIL nav-covers             
+  PASS spill                  PASS off-viewport           PASS fold-card              
+  SKIP hover-spill            PASS overlap-text           PASS collide                
+  PASS tap-size               PASS row-gap                FAIL cut-text               
+  PASS fold-cut               PASS marquee                SKIP scroll-linked          
+  FAIL scroll-reveal          WARN pinned                 SKIP loop-pause             
+  SKIP reduced-motion         PASS hidden-content         PASS webgl                  
+  FAIL no-visual              FAIL text-only              PASS card-visual            
+  SKIP hidden-visual          FAIL card-family            PASS card-layout            
+  PASS nesting                PASS effect-repeat          PASS ui-fit                 
+  PASS ui-centre              PASS dark-ground            FAIL button-styles          
+  PASS button-shape           PASS same-action            PASS button-picture         
+  PASS cta                    PASS pricing-tiers          WARN copy-headline          
+  PASS copy-fact              WARN copy-headings          WARN copy-buttons           
+  WARN copy-actions           FAIL heading-scale          PASS stagger                
+  PASS top-stagger            FAIL off-grid               PASS col-edge               
+  FAIL right-edge             PASS centre-axis            PASS tilt                   
+  PASS contrast               PASS text-contrast          PASS body-size              
+  PASS busy-ground            FAIL section-gaps           PASS proximity              
+  FAIL hole                   FAIL links                  SKIP forms                  
+  PASS photo-upscale          PASS photo-set              PASS photo-credit           
+  WARN nav-family             WARN nav-labels             PASS link-styles            
+  PASS heading-align          PASS label-centre           PASS fake-button            
+  WARN stranded-action        PASS orphan                 PASS unit-break             
+  PASS tab-wrap               PASS effects-fit            PASS fade-cut               
+  PASS photo-weight           WARN copy-length            PASS nav-current            
+  PASS progress-bar           PASS photo-repeat           PASS button-contrast        
+  PASS photo-print            PASS grounds                PASS split-align            
+  PASS fact-agree             PASS fold-action            PASS action-count           
+  WARN one-screen             SKIP hover                  SKIP hover-move             
+  PASS product-shown          PASS same-object            WARN font-load              
+  PASS visual-caption         PASS visual-empty           PASS effect-kind            
+  WARN hero-enter             WARN moment-none            PASS street-number          
+  PASS postcode               PASS coordinates            PASS company-number         
+  PASS phone-number           FAIL hero-screen            FAIL section-height         
+  FAIL section-air            FAIL one-section            FAIL one-heading            
+  FAIL container-edges        PASS row-lines              FAIL split-pair             
+  PASS motion-layer           PASS count-text             PASS loop-cycle             
+  PASS section-tile           PASS empty-area             PASS a11y-name              
+  PASS img-alt                PASS field-label            PASS heading-order          
+  PASS tabindex               PASS focus-ring             FAIL focus-visible          
+  PASS focus-hidden           WARN skip-link              PASS menu-toggle            
+  PASS lang                   PASS page-meta              WARN share-meta             
+  PASS action-repeat          PASS map-link               PASS open-now               
+  PASS assumed                PASS run-on                 WARN form-fields            
+  PASS form-send              
+
+total  84 FAIL  46 WARN  (crops and report.json in /home/claude/.taste-skill/after)

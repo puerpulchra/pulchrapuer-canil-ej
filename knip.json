@@ -1,0 +1,1 @@
+{ "$schema": "https://unpkg.com/knip@5/schema.json", "entry": ["src/logic.js", "src/observability.js", "scripts/build.mjs", "tests/**/*.{mjs,ts}", "playwright.config.ts"], "project": ["src/**/*.js", "scripts/**/*.mjs", "tests/**/*.{mjs,ts}"] }

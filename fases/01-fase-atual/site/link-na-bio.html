@@ -1,0 +1,34 @@
+<title>Canil EJ Links</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap">
+<style>
+:root{--bg:#04141b;--fg:#e8f1ee;--mut:#8fa9b3;--line:#1f4757;--surf:#0a2430;--acc:#7ee0cf;--on:#03211c}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f0f5f3;--fg:#07202a;--mut:#46606a;--line:#c7d7d3;--surf:#fff;--acc:#0c7a69;--on:#fff}}
+:root[data-theme="light"]{--bg:#f0f5f3;--fg:#07202a;--mut:#46606a;--line:#c7d7d3;--surf:#fff;--acc:#0c7a69;--on:#fff}
+body{background:var(--bg);color:var(--fg);font-family:Inter,Helvetica,Arial,sans-serif;padding-block:40px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+main{max-width:440px;margin:0 auto}
+.top{text-align:center}.top svg{width:96px;fill:var(--acc)}
+h1{font-size:34px;font-weight:900;letter-spacing:-.045em;margin:10px 0 4px}
+.top p{color:var(--mut);font-size:15px;margin:0 0 28px}
+a.b{display:flex;justify-content:space-between;align-items:center;min-height:56px;padding:0 18px;margin-bottom:10px;border:1px solid var(--line);border-radius:4px;background:var(--surf);color:var(--fg);text-decoration:none;font-weight:700;font-size:16px}
+a.b small{color:var(--mut);font-weight:400;font-size:13px}
+a.b.main{background:var(--acc);color:var(--on);border-color:var(--acc)}
+a.b:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+footer{text-align:center;color:var(--mut);font-size:12px;margin-top:26px}
+</style>
+<main>
+<div class="top"><svg viewBox="0 0 120 100" aria-hidden="true"><path d="M16 22H54V34H28V44H50V56H28V66H82A10 10 0 0 0 92 56V22H104V56A22 22 0 0 1 82 78H16Z"/></svg>
+<h1>Canil EJ</h1><p>Boerboel · Husky Siberiano · Cane Corso<br>Ilha de Luanda, Angola</p></div>
+<a class="b main" id="wa" href="#">Falar no WhatsApp <span>→</span></a>
+<a class="b" data-s="caes" href="#">Cães disponíveis <small>fichas e preços</small></a>
+<a class="b" data-s="servicos" href="#">Serviços <small>banho, hospedagem, adestramento</small></a>
+<a class="b" data-s="loja" href="#">Loja <small>ração, coleiras, higiene</small></a>
+<a class="b" data-s="contacto" href="#">Marcar visita <small>como chegar</small></a>
+<footer>Exemplo: troque SITE e WA pelos endereços reais.</footer>
+</main>
+<script>
+const SITE="https://exemplo.ao/", WA="244900000000"; // trocar pelos reais
+const u=(s)=>SITE+"?utm_source=instagram&utm_medium=bio&utm_campaign=perfil#"+s;
+document.querySelectorAll("a[data-s]").forEach(a=>a.href=u(a.dataset.s));
+document.getElementById("wa").href="https://wa.me/"+WA+"?text="+encodeURIComponent("Olá! Vim pelo Instagram do Canil EJ.");
+</script>
