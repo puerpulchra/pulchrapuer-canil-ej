@@ -55,3 +55,24 @@ Botões suaves: cor em transição de 240 ms (curva ease-out forte), pressão 90
 
 ## v28 · unslop
 Skill unslop (cursor/plugins, pstack) instalada em ~/.claude/skills/unslop. Aplicada ao texto do site: lema da capa e frases figuradas trocados por factos, 0 travessões, listas de adjetivos cortadas, "bastidores" e "Sem pressão" removidos, subtítulos das raças literais (Mastim sul-africano, Cão de trenó, Cão alemão de guarda). Regra acrescentada ao AGENTS.md; teste e2e do h1 atualizado. Não reescrito: rótulos de dados (temperamento, preços), nomes de produtos. Backup v27: scratchpad/index.src-v27.html.
+
+## v29 a v31 · segurança, Sentry e estrutura
+- v29 (#17, #19): testes e2e para grelha, botões e botão de WhatsApp. Auditoria de segurança com a skill `security-audit` (cloudflare/security-audit-skill, instalada em ~/.claude/skills). Corrigido: CSP e cabeçalhos em `vercel.json`, quantidades do carrinho só inteiros de 1 a 99, workflows com `permissions: contents: read`. Sem achados de XSS.
+- v30 (#21): Sentry ligado no build. `node scripts/build.mjs --observability` lê `EJ_SENTRY_LOADER` e `EJ_VITALS_ENDPOINT`, recusa URLs fora de `js.sentry-cdn.com` e injeta `window.EJ_OBS`. A CSP aceita os domínios do Sentry. Sem variável, nada de terceiros carrega.
+- v30 (#23): portais saíram da capa (capa 0,7 ecrãs); `#escolher` (seletor e comparação) e cada raça são secções próprias.
+- v31 (#25): loja com três produtos por categoria e "Ver mais"; pesquisa e categoria escolhida mostram tudo.
+- Medidas a 390 px: capa 0,7, Cães 0,9, escolher 1,8, cada raça 2,3 a 2,7, Serviços 3,5, Plano 2,1, Visitas 3,2, Loja 6,1. Issue #6 fechada: Serviços e Visitas mantêm o formulário ao lado da lista no computador.
+
+## Estado do repositório e da Vercel
+- Repositório: puerpulchra/pulchrapuer-canil-ej, `main` protegido por PR, CI verde (qualidade, Playwright, Stryker).
+- Issues abertas: #4, #9, #10, #11, #12, #13, #15.
+- Vercel: acesso da equipa autorizado (team_aD7M79jrYSqKa739pUXhW0po). A criação do projeto `canil-ej` falhou com "add a Login Connection to your GitHub account". O dono tem de ligar o GitHub em vercel.com/account/login-connections e instalar a app da Vercel no repositório; depois `create_git_project` com repo `puerpulchra/pulchrapuer-canil-ej` e projectName `canil-ej`.
+
+## Depende do dono
+1. Vercel: ligar o GitHub (acima) e confirmar o projeto.
+2. `CODECOV_TOKEN` como segredo do repositório.
+3. Sentry: criar o projeto (Loader Script) e definir `EJ_SENTRY_LOADER` na Vercel.
+4. Dados reais: telefone, e-mail, morada, horários, preços, nomes dos cães, domínio (substituir `DOMINIO` em robots.txt e sitemap.xml).
+5. Fotos dos cães tiradas no canil e fotos de banco com autor e licença.
+6. Supabase (organização e custo), Datadog, New Relic, OpenTelemetry.
+7. Manuais da marca, do logótipo, modelos do Instagram e ligação na bio ainda usam o marinho e água-marinha antigos.
