@@ -626,6 +626,7 @@ input, select, textarea { box-shadow: rgba(0,0,0,0.05) 0 1px 1px 0; }
 /* faixas alternadas, em largura total */
 #servicos, #loja, #instagram { background: #ffffff; box-shadow: 0 0 0 100vmax #ffffff; clip-path: inset(0 -100vmax); padding-bottom: var(--s-9); }
 #caes, #visitas, #garantias { padding-bottom: 0; }
+.more-btn { margin-top: 16px; }
 /* v29: portais fora da capa, uma secção por raça */
 #caes .portals { padding-bottom: 0; margin-top: var(--s-6, 32px); }
 #chapters { display: contents; }
@@ -1071,7 +1072,7 @@ input, select, textarea { box-shadow: rgba(0,0,0,0.05) 0 1px 1px 0; }
     { id: "s2", c: "Saúde", n: "Multivitamínico para cães", d: "Apoio ao pelo, à pele e à imunidade.", v: "Frasco de 90 comprimidos", p: 9500, r: ALL, st: true }
   ];
 
-  var st = { cat: "Todas", rec: "Todas", cart: {} };
+  var st = { cat: "Todas", rec: "Todas", cart: {}, open: {} };
   try { var saved = JSON.parse(localStorage.getItem("canilej-cart") || "{}"); if (saved && typeof saved === "object") Object.keys(saved).forEach(function (k) { var q = saved[k]; if (Number.isInteger(q) && q > 0 && q < 100) st.cart[k] = q; }); } catch (e) {}
   var saveCart = function () { try { localStorage.setItem("canilej-cart", JSON.stringify(st.cart)); } catch (e) {} };
 
@@ -1167,13 +1168,16 @@ input, select, textarea { box-shadow: rgba(0,0,0,0.05) 0 1px 1px 0; }
     $("#shopCount").textContent = list.length + (list.length === 1 ? " produto" : " produtos");
     var html = CATS.map(function (c) {
       var items = list.filter(function (p) { return p.c === c; });
-      return items.length ? '<div class="group"><div class="group-head"><h3>' + c + '</h3><p>' + CATDESC[c] + '</p></div><div class="rows">' + items.map(card).join("") + "</div></div>" : "";
+      var all = q || st.cat !== "Todas" || st.open[c], shown = all ? items : items.slice(0, 3), rest = items.length - shown.length;
+      var more = rest > 0 ? '<button class="btn btn-line btn-sm more-btn" type="button" data-more="' + c + '">Ver mais ' + rest + (rest === 1 ? " produto" : " produtos") + "</button>" : "";
+      return items.length ? '<div class="group"><div class="group-head"><h3>' + c + '</h3><p>' + CATDESC[c] + '</p></div><div class="rows">' + shown.map(card).join("") + "</div>" + more + "</div>" : "";
     }).join("");
     $("#shopGroups").innerHTML = html || '<div class="empty-note" style="margin-top:24px">Nenhum produto com estes filtros. Experimente outra categoria ou raça.</div>';
   }
   $("#catTabs").addEventListener("click", function (e) { var c = e.target.closest("[data-v]"); if (c) { st.cat = c.getAttribute("data-v"); renderShop(); } });
   $("#recTabs").addEventListener("click", function (e) { var c = e.target.closest("[data-v]"); if (c) { st.rec = c.getAttribute("data-v"); renderShop(); } });
   $("#shopGroups").addEventListener("click", function (e) {
+    var m = e.target.closest("[data-more]"); if (m) { st.open[m.getAttribute("data-more")] = true; renderShop(); return; }
     var b = e.target.closest("[data-add]"); if (!b) return;
     var id = b.getAttribute("data-add"); st.cart[id] = (st.cart[id] || 0) + 1; saveCart(); renderCart();
     b.textContent = "Adicionado ✓"; var cb = $("#openCart"); cb.classList.remove("bump"); void cb.offsetWidth; cb.classList.add("bump"); setTimeout(function () { b.textContent = "Adicionar"; }, 1200);
