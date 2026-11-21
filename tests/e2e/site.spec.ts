@@ -56,7 +56,9 @@ test("reduzir movimento: nada fica escondido", async ({ browser }) => {
   const ctx = await browser.newContext({ reducedMotion: "reduce" });
   const page = await ctx.newPage();
   await page.goto("/");
-  const hidden = await page.evaluate(() => [...document.querySelectorAll(".rv")].filter((e) => getComputedStyle(e).opacity === "0").length);
+  const hidden = await page.evaluate(
+    () => [...document.querySelectorAll(".rv")].filter((e) => getComputedStyle(e).opacity === "0").length,
+  );
   expect(hidden).toBe(0);
   await ctx.close();
 });

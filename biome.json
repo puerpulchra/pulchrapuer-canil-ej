@@ -13,7 +13,7 @@
       "linter": {
         "rules": {
           "style": { "noVar": "off", "useTemplate": "off" },
-          "complexity": { "useArrowFunction": "off", "useOptionalChain": "off" },
+          "complexity": { "useArrowFunction": "off", "useOptionalChain": "off", "noForEach": "off" },
           "correctness": { "noInnerDeclarations": "off" }
         }
       }
