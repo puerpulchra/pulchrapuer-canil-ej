@@ -1062,7 +1062,7 @@ input, select, textarea { box-shadow: rgba(0,0,0,0.05) 0 1px 1px 0; }
   ];
 
   var st = { cat: "Todas", rec: "Todas", cart: {} };
-  try { var saved = JSON.parse(localStorage.getItem("canilej-cart") || "{}"); if (saved && typeof saved === "object") st.cart = saved; } catch (e) {}
+  try { var saved = JSON.parse(localStorage.getItem("canilej-cart") || "{}"); if (saved && typeof saved === "object") Object.keys(saved).forEach(function (k) { var q = saved[k]; if (Number.isInteger(q) && q > 0 && q < 100) st.cart[k] = q; }); } catch (e) {}
   var saveCart = function () { try { localStorage.setItem("canilej-cart", JSON.stringify(st.cart)); } catch (e) {} };
 
   /* ---------- portais das raças ---------- */
