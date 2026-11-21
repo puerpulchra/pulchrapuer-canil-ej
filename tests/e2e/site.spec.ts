@@ -62,3 +62,54 @@ test("reduzir movimento: nada fica escondido", async ({ browser }) => {
   expect(hidden).toBe(0);
   await ctx.close();
 });
+
+test("grelha: títulos de secção alinhados com o logótipo", async ({ page }) => {
+  const logo = await page.locator("header a, nav a").first().boundingBox();
+  const lefts = await page.locator("section[id] h2").evaluateAll((els) =>
+    els.map((e) => Math.round(e.getBoundingClientRect().left)),
+  );
+  expect(new Set(lefts).size).toBe(1);
+  expect(lefts[0]).toBe(Math.round(logo?.x ?? -1));
+});
+
+test("botões: dois estilos, preenchido e contornado", async ({ page }) => {
+  const styles = await page.locator(".btn").evaluateAll((els) =>
+    Array.from(
+      new Set(
+        els
+          .filter((e) => (e as HTMLElement).offsetParent)
+          .map((e) => (getComputedStyle(e).backgroundColor === "rgba(0, 0, 0, 0)" ? "contorno" : "cheio")),
+      ),
+    ),
+  );
+  expect(styles.sort()).toEqual(["cheio", "contorno"]);
+});
+
+test("botão de WhatsApp não cobre texto", async ({ page }) => {
+  const covered = await page.evaluate(() => {
+    const fab = document.querySelector(".wa-fab") as HTMLElement;
+    let hits = 0;
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    const nodes: Text[] = [];
+    for (let n = walker.nextNode(); n; n = walker.nextNode()) {
+      const p = (n as Text).parentElement;
+      if ((n as Text).textContent?.trim() && p && !fab.contains(n) && p.offsetParent && !["SCRIPT", "STYLE"].includes(p.tagName)) nodes.push(n as Text);
+    }
+    for (let y = 0; y < document.documentElement.scrollHeight; y += 200) {
+      window.scrollTo(0, y);
+      const f = fab.getBoundingClientRect();
+      for (const t of nodes) {
+        const r = document.createRange();
+        r.selectNodeContents(t);
+        for (const q of Array.from(r.getClientRects())) {
+          if (q.width && q.left < f.right && q.right > f.left && q.top < f.bottom && q.bottom > f.top) {
+            hits++;
+            break;
+          }
+        }
+      }
+    }
+    return hits;
+  });
+  expect(covered).toBe(0);
+});
