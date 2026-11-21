@@ -66,7 +66,7 @@ test("reduzir movimento: nada fica escondido", async ({ browser }) => {
 test("grelha: títulos de secção alinhados com o logótipo", async ({ page }) => {
   const logo = await page.locator("header a, nav a").first().boundingBox();
   const lefts = await page
-    .locator("section[id] h2")
+    .locator(".sec-head h2")
     .evaluateAll((els) => els.map((e) => Math.round(e.getBoundingClientRect().left)));
   expect(new Set(lefts).size).toBe(1);
   expect(lefts[0]).toBe(Math.round(logo?.x ?? -1));
