@@ -1,6 +1,8 @@
-import { test, expect } from "@playwright/test";
+import { expect, test } from "@playwright/test";
 
-test.beforeEach(async ({ page }) => { await page.goto("/"); });
+test.beforeEach(async ({ page }) => {
+  await page.goto("/");
+});
 
 test("capa mostra o nome e as três raças", async ({ page }) => {
   await expect(page).toHaveTitle(/Canil EJ/);
