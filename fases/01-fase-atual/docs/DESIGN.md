@@ -1,3 +1,13 @@
+# v30 · MotionSites (substitui a estrutura da v24)
+Estrutura baseada na skill `motionsites-web-builder`, referência Smoothie Slider com o texto que enche do Orvante. Cores, DM Sans e logótipo EJ não mudam.
+- Palco de ecrã inteiro: Boerboel em verde-floresta, Husky em lavanda #d9c6fb, Rottweiler em manteiga #f3e6a4. Cada raça tem palavra gigante atrás e uma ficha branca com os dados reais. A troca é um painel que desliza (translateX, 900 ms, `cubic-bezier(.22,.8,.3,1)`), com a palavra e a ficha a deslizar mais depressa. Sem passagem automática.
+- Manifesto: palavras com opacidade de 0,3 a 1 conforme o scroll.
+- Folhas: cada secção tem cantos de 48 px no topo e sobrepõe-se 48 px à anterior. Fundos alternam lavanda, branco e a cor da raça.
+- Navegação em pílula flutuante a partir de 900 px. Índices `[ 01 ]` nas secções. Grão estático a 4,5 %.
+- Palavras fantasma atrás dos títulos de cada raça, com o tamanho ajustado à largura.
+- Não se usam vídeos nem fotos de terceiros: nenhum mostra cães. Fotos reais do canil entram nos espaços `.ph` quando existirem.
+- Só se animam transform e opacity. `prefers-reduced-motion` desliga entrada, painel e manifesto.
+
 # DESIGN.md · Canil EJ
 
 Site de um canil na Ilha de Luanda: cães (Boerboel, Husky Siberiano, Rottweiler), serviços, visitas e loja. Tom: sólido, calmo, de confiança. Direção: **Caderneta** (marinho do Atlântico com um único acento água-marinha, cantos retos, títulos grandes numa fonte de display, faixas claras "espuma" para dar ritmo, fotografia real como protagonista).

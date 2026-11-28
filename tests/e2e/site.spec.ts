@@ -7,8 +7,8 @@ test.beforeEach(async ({ page }) => {
 test("capa mostra o nome e as três raças", async ({ page }) => {
   await expect(page).toHaveTitle(/Canil EJ/);
   await expect(page.locator("h1")).toContainText("Cães de raça criados");
-  await expect(page.locator("#caes")).toContainText("Rottweiler");
-  await expect(page.locator("#caes")).not.toContainText("Cane Corso");
+  await expect(page.locator("#capa")).toContainText("Rottweiler");
+  await expect(page.locator("main")).not.toContainText("Cane Corso");
 });
 
 test("sem scroll horizontal", async ({ page }) => {
