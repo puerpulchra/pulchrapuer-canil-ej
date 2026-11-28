@@ -90,7 +90,7 @@ test("botões: dois estilos, preenchido e contornado", async ({ page }) => {
 test("botão de WhatsApp não cobre texto", async ({ page }) => {
   const covered = await page.evaluate(() => {
     const fab = document.querySelector(".wa-fab") as HTMLElement;
-    let hits = 0;
+    const hits: string[] = [];
     const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
     const nodes: Text[] = [];
     for (let n = walker.nextNode(); n; n = walker.nextNode()) {
@@ -118,7 +118,7 @@ test("botão de WhatsApp não cobre texto", async ({ page }) => {
               Math.min(Math.max(q.top + q.height / 2, f.top), f.bottom - 1),
             );
             if (top && !fab.contains(top) && !t.parentElement?.contains(top)) continue;
-            hits++;
+            hits.push(`${Math.round(y)}:${t.textContent?.trim().slice(0, 30)}`);
             break;
           }
         }
@@ -126,5 +126,5 @@ test("botão de WhatsApp não cobre texto", async ({ page }) => {
     }
     return hits;
   });
-  expect(covered).toBe(0);
+  expect(covered.slice(0, 6)).toEqual([]);
 });
