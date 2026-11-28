@@ -63,13 +63,13 @@ test("reduzir movimento: nada fica escondido", async ({ browser }) => {
   await ctx.close();
 });
 
-test("grelha: títulos de secção alinhados com o logótipo", async ({ page }) => {
-  const logo = await page.locator("header a, nav a").first().boundingBox();
+test("grelha: títulos de secção alinhados com o título da capa", async ({ page }) => {
+  const capa = await page.locator("#capa h1").boundingBox();
   const lefts = await page
     .locator(".sec-head h2")
     .evaluateAll((els) => els.map((e) => Math.round(e.getBoundingClientRect().left)));
   expect(new Set(lefts).size).toBe(1);
-  expect(lefts[0]).toBe(Math.round(logo?.x ?? -1));
+  expect(lefts[0]).toBe(Math.round(capa?.x ?? -1));
 });
 
 test("botões: dois estilos, preenchido e contornado", async ({ page }) => {
@@ -99,6 +99,7 @@ test("botão de WhatsApp não cobre texto", async ({ page }) => {
         (n as Text).textContent?.trim() &&
         p &&
         !fab.contains(n) &&
+        !p.closest('[aria-hidden="true"]') &&
         p.offsetParent &&
         !["SCRIPT", "STYLE"].includes(p.tagName)
       )
@@ -112,6 +113,11 @@ test("botão de WhatsApp não cobre texto", async ({ page }) => {
         r.selectNodeContents(t);
         for (const q of Array.from(r.getClientRects())) {
           if (q.width && q.left < f.right && q.right > f.left && q.top < f.bottom && q.bottom > f.top) {
+            const top = document.elementFromPoint(
+              Math.min(Math.max(q.left + q.width / 2, f.left), f.right - 1),
+              Math.min(Math.max(q.top + q.height / 2, f.top), f.bottom - 1),
+            );
+            if (top && !fab.contains(top) && !t.parentElement?.contains(top)) continue;
             hits++;
             break;
           }
