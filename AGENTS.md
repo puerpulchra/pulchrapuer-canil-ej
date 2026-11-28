@@ -3,7 +3,7 @@
 Regras para qualquer agente, de qualquer modelo. Lê este ficheiro antes de mexer no projeto.
 
 ## Projeto
-Site do Canil EJ (Ilha de Luanda): cães (Boerboel, Husky Siberiano, Rottweiler), serviços, visitas, loja. Preços em Kz. Identidade (v24): verde-floresta #0a3922, tela lavanda #eee2ff, cartões pastel, CTA coral #ff643b só nos botões primários, DM Sans única, logótipo EJ. Referência: o style reference da Turn.io. Direção visual em `fases/01-fase-atual/docs/DESIGN.md`. Fonte do site: `src/index.src.html` + `src/logic.js`; `dist/` é gerado (`npm run build`), nunca se edita à mão.
+Site do Canil EJ (Ilha de Luanda): cães (Boerboel, Husky Siberiano, Rottweiler), serviços, visitas, loja. Preços em Kz. Identidade (v30): verde-floresta #0a3922, tela lavanda #eee2ff, cartões pastel, CTA coral #ff643b só nos botões primários, DM Sans única, logótipo EJ. Estrutura da skill motionsites-web-builder (referência Smoothie Slider): palco de ecrã inteiro com uma cor por raça, palavra gigante, manifesto com palavras que enchem, folhas arredondadas que se sobrepõem, navegação em pílula. Sem media de terceiros e sem fotos inventadas. Base de cor e tipo vem do style reference da Turn.io. Direção visual em `fases/01-fase-atual/docs/DESIGN.md`. Fonte do site: `src/index.src.html` + `src/logic.js`; `dist/` é gerado (`npm run build`), nunca se edita à mão. `node scripts/build.mjs --fragment` gera o corpo sem doctype para o Artifact.
 
 ## Fluxo de trabalho obrigatório
 1. **Toda a tarefa é uma Issue** no GitHub antes de começar: Correção (`bug`), Melhoria (`enhancement`) ou Nova função (`feature`). Usar os modelos em `.github/ISSUE_TEMPLATE`. Sem issue, não há trabalho.
